@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: Tamagotchi
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 9f9d068f9657cc03784f433116812a0d, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 0.84705883, b: 0.63529414, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -270,7 +270,7 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 2cf1c4e62120ef2559a49025bd6990a0, type: 3}
+      m_Icon: {fileID: 2800000, guid: 6c318af8616f03a5ea957f651bbd0533, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
@@ -308,6 +308,13 @@ PlayerSettings:
       m_Icon: {fileID: 0}
       m_Width: 16
       m_Height: 16
+      m_Kind: 0
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 6c318af8616f03a5ea957f651bbd0533, type: 3}
+      m_Width: 128
+      m_Height: 128
       m_Kind: 0
   m_BuildTargetPlatformIcons: []
   m_BuildTargetBatching:
