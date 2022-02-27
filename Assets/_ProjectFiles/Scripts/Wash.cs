@@ -2,29 +2,40 @@ using UnityEngine;
 
 public class Wash : MonoBehaviour
 {
-    public GameObject Prefab;
+    public GameObject Soap;
+    public ParticleSystem Foam;
 
-    private Transform target;
     private Vector3 mousePos;
     private Vector3 worldPos;
 
-    public void StartWashing() {
-        target = Instantiate(Prefab, Vector3.zero, Quaternion.identity).transform;
+    public void StartWashing()
+    {
+        Soap.SetActive(true);
+        Foam.Pause();
+        UpdatePositions();
+        Foam.Play();
     }
 
-    public void StopWashing() {
-        Destroy(target.gameObject);
-        target = null;
+    public void StopWashing()
+    {
+        Soap.SetActive(false);
     }
 
     void Update()
     {
-        if (target != null) {
-            mousePos = Input.mousePosition;
-            mousePos.z = Camera.main.nearClipPlane;
-            worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-
-            target.position = worldPos;
+        if (Soap.activeInHierarchy)
+        {
+            UpdatePositions();
         }
+    }
+
+    void UpdatePositions()
+    {
+        mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.nearClipPlane;
+        worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        Soap.transform.position = worldPos;
+        Foam.transform.position = worldPos;
     }
 }
