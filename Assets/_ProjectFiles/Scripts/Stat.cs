@@ -2,12 +2,22 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class Stat {
+public class Stat
+{
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    private float value = 1;
 
-    [Range (0.0f, 1.0f)]
-    public float Value = 1;
-    public float IncreaseRate;
-    public float DecreaseRate;
+    public float Value
+    {
+        get => value;
+        set
+        {
+            this.value = value;
+            this.value = Mathf.Clamp(this.value, 0.0f, 1.0f);
+            OnChange?.Invoke();
+        }
+    }
 
     public UnityEvent OnChange;
 }

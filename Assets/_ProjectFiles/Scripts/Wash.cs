@@ -4,14 +4,15 @@ public class Wash : MonoBehaviour
 {
     public GameObject Soap;
     public ParticleSystem Foam;
+    public PetStats Stats;
 
-    private Vector3 mousePos;
-    private Vector3 worldPos;
+    private Vector2 prevMouse;
 
     public void StartWashing()
     {
         Soap.SetActive(true);
         Foam.Pause();
+        prevMouse = Input.mousePosition;
         UpdatePositions();
         Foam.Play();
     }
@@ -31,11 +32,15 @@ public class Wash : MonoBehaviour
 
     void UpdatePositions()
     {
-        mousePos = Input.mousePosition;
+        var mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
-        worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        var worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        var mouseDelta = ((Vector2)mousePos - prevMouse).magnitude * Time.deltaTime;
+        Stats.Cleanliness.Value += mouseDelta / 50f;
 
         Soap.transform.position = worldPos;
         Foam.transform.position = worldPos;
+        prevMouse = Input.mousePosition;
     }
 }
