@@ -10,6 +10,6 @@ public class RoomManager : MonoBehaviour
 [System.Serializable]
 public class Room {
     public string Name = "New Room";
-    public Sprite Sprite;
+    public GameObject Object;
     public AudioClip Clip;
 } 
