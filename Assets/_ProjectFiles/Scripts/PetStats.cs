@@ -1,9 +1,10 @@
 using UnityEngine;
 
-enum State {
-    Good,
-    Decent,
-    Bad,
+// TODO rename every state
+public enum States {
+    Clean,
+    Dirty,
+    Tired,
     Dead
 } 
 
@@ -11,6 +12,7 @@ public class PetStats : MonoBehaviour
 {
     [Range (0.0f, 1.0f)]
     public float OverallHealth;
+    public States State;
 
     public Stat Cleanliness;
     public Stat Hunger;
