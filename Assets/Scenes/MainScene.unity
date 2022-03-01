@@ -3475,13 +3475,15 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 38e86bb91b346506c9b43623e9a17ae1, type: 3}
     - {fileID: 21300000, guid: 02637a7ed27870769a8595f235540f7d, type: 3}
     - {fileID: 21300000, guid: 2702637cba72df2b4acd138ffcf40c69, type: 3}
+    - {fileID: 21300000, guid: e7415c38b33c214c5b594b68269df26f, type: 3}
   Accessories:
     Index: 0
     Target: {fileID: 151906138}
     Options:
     - {fileID: 0}
-    - {fileID: 21300000, guid: 60a5c01abdfa99a0e965be1c49c7a027, type: 3}
-    - {fileID: 21300000, guid: 0d2f99d78658da9cdb27fe66501f4a87, type: 3}
+    - {fileID: 21300000, guid: ee1f86c260482416abc1f88f187b53d3, type: 3}
+    - {fileID: 21300000, guid: efd2a9e22778c59a490645a31a3c263d, type: 3}
+    - {fileID: 21300000, guid: 63c95a1f1b6647424a942d1048b5303f, type: 3}
 --- !u!1001 &759679963
 PrefabInstance:
   m_ObjectHideFlags: 0
