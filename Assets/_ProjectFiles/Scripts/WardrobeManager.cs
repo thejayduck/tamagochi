@@ -5,6 +5,7 @@ public class WardrobeManager : MonoBehaviour
     public Wardrobe Hats;
     public Wardrobe Glasses;
     public Wardrobe Dress;
+    public Wardrobe Accessories;
 
     public void Wear (int target) {
         switch (target) {
@@ -17,6 +18,9 @@ public class WardrobeManager : MonoBehaviour
             case 2:
                 ApplyClothing(Dress);
                 break;
+            case 3:
+                ApplyClothing(Accessories);
+            break;
         }
     }
     
