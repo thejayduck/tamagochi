@@ -9,9 +9,4 @@ public class Interact : MonoBehaviour
     {
         Events.Invoke();
     }
-
-    public void Caress(ParticleSystem particle){
-        GameObject _particle = Instantiate(particle, this.transform.position, Quaternion.identity).gameObject;
-        Destroy(_particle, 1.1f);
-    }
 }

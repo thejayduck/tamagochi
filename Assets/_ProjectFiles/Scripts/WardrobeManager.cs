@@ -7,28 +7,34 @@ public class WardrobeManager : MonoBehaviour
     public Wardrobe Dress;
     public Wardrobe Accessories;
 
-    public void Wear (int target) {
+    public void Next(int target) {
+        var wardrobe = GetWardrobe(target);
+        wardrobe.Index = Repeat(wardrobe.Index + 1, wardrobe.Options.Length);
+        wardrobe.Target.sprite = wardrobe.Options[wardrobe.Index];
+    }
+
+    public void Prev(int target) {
+        var wardrobe = GetWardrobe(target);
+        wardrobe.Index = Repeat(wardrobe.Index - 1, wardrobe.Options.Length);
+        wardrobe.Target.sprite = wardrobe.Options[wardrobe.Index];
+    }
+
+    public Wardrobe GetWardrobe(int target) {
         switch (target) {
             case 0:
-                ApplyClothing(Hats);
-                break;
+                return Hats;
             case 1:
-                ApplyClothing(Glasses);
-                break;
+                return Glasses;
             case 2:
-                ApplyClothing(Dress);
-                break;
+                return Dress;
             case 3:
-                ApplyClothing(Accessories);
-            break;
+                return Accessories;
+            default:
+                throw new System.ArgumentException();
         }
     }
-    
-    void ApplyClothing(Wardrobe target) {
-        target.Index += 1;
-        target.Index = target.Index > target.Options.Length - 1 ? 0 : target.Index;
-        target.Target.sprite = target.Options[target.Index];
-    }
+
+    int Repeat(int v, int max) => (v % max + max) % max;
 }
 
 [System.Serializable]
