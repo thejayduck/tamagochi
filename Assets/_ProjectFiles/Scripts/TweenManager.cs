@@ -54,7 +54,8 @@ public class TweenManager : MonoBehaviour
             InitTween();
     }
 
-    public void InitTween() {
+    public void InitTween()
+    {
         if (Target == null)
             Target = this.gameObject;
 
@@ -63,7 +64,7 @@ public class TweenManager : MonoBehaviour
                 //TODO Implement
                 break;
             case AnimTypes.Scale:
-                //TODO Implement
+                Scale();
                 break;
             case AnimTypes.ScaleX:
                 //TODO Implement
@@ -102,5 +103,13 @@ public class TweenManager : MonoBehaviour
             Target.gameObject.GetComponent<CanvasGroup>().alpha = From.x;
 
         _tweenObject = LeanTween.alphaCanvas(Target.gameObject.GetComponent<CanvasGroup>(), To.x, Duration);
+    }
+
+    private void Scale()
+    {
+        if (Offset)
+            Target.gameObject.GetComponent<RectTransform>().localScale = From;
+
+        _tweenObject = LeanTween.scale(Target, To, Duration);
     }
 }

@@ -2260,6 +2260,7 @@ GameObject:
   - component: {fileID: 530459521}
   - component: {fileID: 530459523}
   - component: {fileID: 530459522}
+  - component: {fileID: 530459524}
   m_Layer: 5
   m_Name: Inner
   m_TagString: Untagged
@@ -2327,6 +2328,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 530459520}
   m_CullTransparentMesh: 1
+--- !u!114 &530459524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530459520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5b48b5bcca1d80898869a6086a8a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  AnimationType: 1
+  Duration: 0.5
+  Delay: 0
+  PlayOnStart: 0
+  PlayOnEnable: 1
+  Loop: 0
+  PingPong: 0
+  Offset: 1
+  From: {x: 0, y: 0, z: 0}
+  To: {x: 1, y: 1, z: 0}
+  EaseType: 32
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &553436654
 GameObject:
   m_ObjectHideFlags: 0
@@ -4456,7 +4490,7 @@ Material:
     - _DistortAmount: 0.5
     - _DistortTexXSpeed: 5
     - _DistortTexYSpeed: 5
-    - _EditorDrawers: 3
+    - _EditorDrawers: 7
     - _FadeAmount: -0.1
     - _FadeBurnGlow: 2
     - _FadeBurnTransition: 0.075
@@ -5841,7 +5875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5929,7 +5963,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9927,7 +9960,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 1
+    enabled: 0
     mode: 0
     ratio: 1
     lifetime:
