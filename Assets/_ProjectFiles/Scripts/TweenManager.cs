@@ -99,10 +99,12 @@ public class TweenManager : MonoBehaviour
 
     private void Fade()
     {
-        if (Offset)
-            Target.gameObject.GetComponent<CanvasGroup>().alpha = From.x;
+        CanvasGroup _group = Target.gameObject.GetComponent<CanvasGroup>();
 
-        _tweenObject = LeanTween.alphaCanvas(Target.gameObject.GetComponent<CanvasGroup>(), To.x, Duration);
+        if (Offset)
+            _group.alpha = From.x;
+
+        _tweenObject = LeanTween.alphaCanvas(_group, To.x, Duration);
     }
 
     private void Scale()
