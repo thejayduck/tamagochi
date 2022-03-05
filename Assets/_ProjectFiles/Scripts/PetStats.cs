@@ -1,10 +1,10 @@
 using UnityEngine;
 
-// TODO rename every state
 public enum States {
-    Clean,
-    Dirty,
-    Tired,
+    Happy,
+    Okay,
+    Bad,
+    Awful,
     Dead
 } 
 
