@@ -97,6 +97,12 @@ public class TweenManager : MonoBehaviour
         });
     }
 
+    private void Move(){
+        
+
+        _tweenObject = LeanTween.move(Target, To, Duration);
+    }
+
     private void Fade()
     {
         CanvasGroup _group = Target.gameObject.GetComponent<CanvasGroup>();
