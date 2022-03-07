@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum AnimTypes {
+public enum AnimTypes
+{
     Move,
     Scale,
     ScaleX,
@@ -59,7 +60,8 @@ public class TweenManager : MonoBehaviour
         if (Target == null)
             Target = this.gameObject;
 
-        switch (AnimationType) {
+        switch (AnimationType)
+        {
             case AnimTypes.Move:
                 //TODO Implement
                 break;
@@ -86,26 +88,30 @@ public class TweenManager : MonoBehaviour
             _tweenObject.setLoopPingPong();
 
         // Set Events
-        _tweenObject.setOnStart(() => {
+        _tweenObject.setOnStart(() =>
+        {
             OnStart.Invoke();
         })
-        .setOnUpdate((float value) => {
+        .setOnUpdate((float value) =>
+        {
             OnUpdate.Invoke();
         })
-        .setOnComplete(() => {
+        .setOnComplete(() =>
+        {
             OnComplete.Invoke();
         });
     }
 
-    private void Move(){
-        
+    private void Move()
+    {
+
 
         _tweenObject = LeanTween.move(Target, To, Duration);
     }
 
     private void Fade()
     {
-        CanvasGroup _group = Target.gameObject.GetComponent<CanvasGroup>();
+        var _group = Target.gameObject.GetComponent<CanvasGroup>();
 
         if (Offset)
             _group.alpha = From.x;

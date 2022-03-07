@@ -21,11 +21,11 @@ public class RoomManager : MonoBehaviour
         _currentRoom = target;
 
         OnTransition.Invoke();
-        
+
         yield return new WaitForSeconds(0.5f);
-        
+
         Debug.LogWarning($"Loading Assets for Room {target}");
-        
+
         yield return new WaitForSeconds(1.5f);
 
     }
@@ -33,9 +33,10 @@ public class RoomManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class Room {
+public class Room
+{
     public string Name = "New Room";
     public Sprite Sprite;
     public GameObject Object;
     public AudioClip Clip;
-} 
+}
