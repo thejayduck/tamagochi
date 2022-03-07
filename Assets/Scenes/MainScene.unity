@@ -5462,6 +5462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbf7c0424e3b70b2962122fdcb4fca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Stats: {fileID: 744149416}
 --- !u!212 &1288418867
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5543,7 +5544,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: f03928f672547ed4e931eeabe64ab62b, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
