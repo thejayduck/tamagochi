@@ -5,6 +5,8 @@ public class Ball : MonoBehaviour
     Vector2? _delta;
     bool hitLastFrame = false;
     bool touchedLeft = false;
+    Rigidbody2D rb => GetComponent<Rigidbody2D>();
+
     public PetStats Stats;
 
     void Update()
@@ -16,7 +18,7 @@ public class Ball : MonoBehaviour
         {
             if (hit || hitLastFrame)
             {
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                rb.velocity = Vector2.zero;
                 transform.position = point;
                 _delta = delta;
             }
@@ -24,7 +26,7 @@ public class Ball : MonoBehaviour
         else if (_delta != null)
         {
             var velocity = _delta.Value / Time.deltaTime;
-            GetComponent<Rigidbody2D>().velocity = velocity.normalized * Mathf.Min(velocity.magnitude, 20.0f);
+            rb.velocity = velocity.normalized * Mathf.Min(velocity.magnitude, 20.0f);
             _delta = null;
         }
         hitLastFrame = hit;
@@ -33,12 +35,12 @@ public class Ball : MonoBehaviour
         var ballRadiusInScreenCoordinates = Mathf.Abs(Camera.main.WorldToScreenPoint(Vector3.one * 0.5f).x - Camera.main.WorldToScreenPoint(Vector3.zero).x);
         if ((screenPosition.y > Screen.height - ballRadiusInScreenCoordinates) || (screenPosition.y < ballRadiusInScreenCoordinates) || (screenPosition.x > Screen.width - ballRadiusInScreenCoordinates) || (screenPosition.x < ballRadiusInScreenCoordinates))
         {
-            var velocity = GetComponent<Rigidbody2D>().velocity;
+            var velocity = rb.velocity;
             if (screenPosition.x > Screen.width - ballRadiusInScreenCoordinates)
             {
                 velocity.x *= -0.85f;
                 velocity.y *= 0.85f;
-                GetComponent<Rigidbody2D>().AddTorque(velocity.y * 5f);
+                rb.AddTorque(velocity.y * 5f);
                 screenPosition.x = Screen.width - ballRadiusInScreenCoordinates;
                 if (touchedLeft)
                 {
@@ -50,7 +52,7 @@ public class Ball : MonoBehaviour
             {
                 velocity.x *= -0.85f;
                 velocity.y *= 0.85f;
-                GetComponent<Rigidbody2D>().AddTorque(velocity.y * 5f);
+                rb.AddTorque(velocity.y * 5f);
                 screenPosition.x = ballRadiusInScreenCoordinates;
                 touchedLeft = true;
             }
@@ -58,21 +60,26 @@ public class Ball : MonoBehaviour
             if (screenPosition.y > Screen.height - ballRadiusInScreenCoordinates)
             {
                 velocity.x *= 0.85f;
-                GetComponent<Rigidbody2D>().AddTorque(-velocity.x * 5f);
                 velocity.y *= -0.85f;
+                rb.AddTorque(-velocity.x * 5f);
                 screenPosition.y = Screen.height - ballRadiusInScreenCoordinates;
             }
             else if (screenPosition.y < ballRadiusInScreenCoordinates)
             {
                 velocity.x *= 0.85f;
-                GetComponent<Rigidbody2D>().AddTorque(-velocity.x * 5f);
                 velocity.y *= -0.85f;
+                rb.AddTorque(-velocity.x * 5f);
                 screenPosition.y = ballRadiusInScreenCoordinates;
             }
 
             var newWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-            GetComponent<Rigidbody2D>().velocity = velocity;
+            rb.velocity = velocity;
             transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
         }
+    }
+
+    void ApplyFoce()
+    {
+        // TODO implement
     }
 }

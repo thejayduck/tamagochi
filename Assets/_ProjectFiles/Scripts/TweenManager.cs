@@ -60,10 +60,9 @@ public class TweenManager : MonoBehaviour
         if (Target == null)
             Target = this.gameObject;
 
-        switch (AnimationType)
-        {
+        switch (AnimationType) {
             case AnimTypes.Move:
-                //TODO Implement
+                Move();
                 break;
             case AnimTypes.Scale:
                 Scale();
@@ -88,23 +87,21 @@ public class TweenManager : MonoBehaviour
             _tweenObject.setLoopPingPong();
 
         // Set Events
-        _tweenObject.setOnStart(() =>
-        {
+        _tweenObject.setOnStart(() => {
             OnStart.Invoke();
         })
-        .setOnUpdate((float value) =>
-        {
+        .setOnUpdate((float value) => {
             OnUpdate.Invoke();
         })
-        .setOnComplete(() =>
-        {
+        .setOnComplete(() => {
             OnComplete.Invoke();
         });
     }
 
     private void Move()
     {
-
+        if (Offset)
+            Target.transform.localPosition = From;    
 
         _tweenObject = LeanTween.move(Target, To, Duration);
     }
