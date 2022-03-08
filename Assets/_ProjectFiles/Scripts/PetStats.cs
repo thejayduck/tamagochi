@@ -56,9 +56,13 @@ public class PetStats : MonoBehaviour
 
     private void Update()
     {
-        Cleanliness.Value -= 0.01f * Time.deltaTime;
-        Hunger.Value -= 0.01f * Time.deltaTime;
-        Affection.Value -= 0.01f * Time.deltaTime;
+        var _cleanliness = Cleanliness.ValueCurve.Evaluate(Cleanliness.Value);
+        var _hunger = Hunger.ValueCurve.Evaluate(Hunger.Value);
+        var _affection = Affection.ValueCurve.Evaluate(Affection.Value);
+
+        Cleanliness.Value -= _cleanliness * Time.deltaTime;
+        Hunger.Value -= _hunger * Time.deltaTime;
+        Affection.Value -= _affection * Time.deltaTime;
 
         CalculateOverall();
     }

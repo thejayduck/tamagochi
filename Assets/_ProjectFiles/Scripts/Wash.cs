@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Wash : MonoBehaviour
 {
+    public SpriteRenderer Target;
     public GameObject Soap;
     public ParticleSystem Foam;
     public PetStats Stats;
@@ -27,6 +28,7 @@ public class Wash : MonoBehaviour
         if (Soap.activeInHierarchy)
         {
             UpdatePositions();
+
         }
     }
 

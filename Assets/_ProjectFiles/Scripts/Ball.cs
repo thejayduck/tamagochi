@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
         hitLastFrame = hit;
 
         var screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-        var ballRadiusInScreenCoordinates = Mathf.Abs(Camera.main.WorldToScreenPoint(Vector3.one * 0.5f).x - Camera.main.WorldToScreenPoint(Vector3.zero).x);
+        var ballRadiusInScreenCoordinates = Mathf.Abs(Camera.main.WorldToScreenPoint(Vector3.one * 0.8f).x - Camera.main.WorldToScreenPoint(Vector3.zero).x);
         if ((screenPosition.y > Screen.height - ballRadiusInScreenCoordinates) || (screenPosition.y < ballRadiusInScreenCoordinates) || (screenPosition.x > Screen.width - ballRadiusInScreenCoordinates) || (screenPosition.x < ballRadiusInScreenCoordinates))
         {
             var velocity = rb.velocity;
@@ -42,11 +42,11 @@ public class Ball : MonoBehaviour
                 velocity.y *= 0.85f;
                 rb.AddTorque(velocity.y * 5f);
                 screenPosition.x = Screen.width - ballRadiusInScreenCoordinates;
-                if (touchedLeft)
-                {
-                    Stats.Affection.Value += 0.1f;
-                }
-                touchedLeft = false;
+                // if (touchedLeft)
+                // {
+                //     Stats.Affection.Value += 0.1f;
+                // }
+                // touchedLeft = false;
             }
             else if (screenPosition.x < ballRadiusInScreenCoordinates)
             {
@@ -54,7 +54,7 @@ public class Ball : MonoBehaviour
                 velocity.y *= 0.85f;
                 rb.AddTorque(velocity.y * 5f);
                 screenPosition.x = ballRadiusInScreenCoordinates;
-                touchedLeft = true;
+                // touchedLeft = true;
             }
 
             if (screenPosition.y > Screen.height - ballRadiusInScreenCoordinates)

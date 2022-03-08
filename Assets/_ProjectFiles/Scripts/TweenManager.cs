@@ -103,7 +103,7 @@ public class TweenManager : MonoBehaviour
         if (Offset)
             Target.transform.localPosition = From;    
 
-        _tweenObject = LeanTween.move(Target, To, Duration);
+        _tweenObject = LeanTween.move(Target.GetComponent<RectTransform>(), To, Duration);
     }
 
     private void Fade()
