@@ -9,7 +9,7 @@ public enum States
     Dead
 }
 
-public class PetStats : MonoBehaviour
+public class PetStats : SingletonBehaviour<PetStats>
 {
     [Range(0.0f, 1.0f)]
     public float OverallHealth;

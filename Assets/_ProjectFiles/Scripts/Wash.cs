@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class Wash : MonoBehaviour
 {
+    private PetStats Stats;
+    
     public SpriteRenderer Target;
     public GameObject Soap;
     public ParticleSystem Foam;
-    public PetStats Stats;
 
     private Vector2 prevMouse;
+
+    private void Start()
+    {
+        Stats = PetStats.Instance;
+    }
 
     public void StartWashing()
     {
