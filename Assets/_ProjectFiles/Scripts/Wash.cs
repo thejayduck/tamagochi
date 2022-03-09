@@ -3,42 +3,25 @@ using UnityEngine;
 public class Wash : MonoBehaviour
 {
     private PetStats Stats;
+    private Vector2 prevMouse;
     
     public SpriteRenderer Target;
     public GameObject Soap;
     public ParticleSystem Foam;
-
-    private Vector2 prevMouse;
 
     private void Start()
     {
         Stats = PetStats.Instance;
     }
 
-    public void StartWashing()
+    private void OnMouseDown()
     {
-        Soap.SetActive(true);
         Foam.Pause();
         prevMouse = Input.mousePosition;
-        UpdatePositions();
         Foam.Play();
     }
 
-    public void StopWashing()
-    {
-        Soap.SetActive(false);
-    }
-
-    void Update()
-    {
-        if (Soap.activeInHierarchy)
-        {
-            UpdatePositions();
-
-        }
-    }
-
-    void UpdatePositions()
+    private void OnMouseDrag()
     {
         var mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
@@ -50,5 +33,10 @@ public class Wash : MonoBehaviour
         Soap.transform.position = worldPos;
         Foam.transform.position = worldPos;
         prevMouse = Input.mousePosition;
+    }
+
+    private void OnMouseUp()
+    {
+        Soap.transform.localPosition = new Vector2(0.0f, 0.0f); 
     }
 }

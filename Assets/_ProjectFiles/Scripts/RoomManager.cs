@@ -6,9 +6,9 @@ public class RoomManager : MonoBehaviour
 {
     private int _currentRoom;
 
-    public SpriteRenderer Target;
-    public UnityEvent OnTransition;
     public Room[] Rooms;
+    public UnityEvent OnTransition;
+    public AudioSource Source;
 
     public void SwitchRoom(int target)
     {
@@ -24,6 +24,24 @@ public class RoomManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        foreach (Room i in Rooms)
+            i.Object.SetActive(false);
+
+        Rooms[target].Object.SetActive(true);
+        // Transition Audio
+        float _baseVol = Source.volume;
+
+        LeanTween.value(_baseVol, 0, 0.5f).setOnUpdate((float var) =>
+        {
+            Source.volume = var;
+
+        }).setOnComplete(() =>
+        {
+            Source.clip = Rooms[target].Clip;
+            Source.Play();
+            LeanTween.value(0, 1, 0.5f).setOnUpdate((float var) => { Source.volume = var; });
+        });
+
         Debug.LogWarning($"Loading Assets for Room {target}");
 
         yield return new WaitForSeconds(1.5f);
@@ -36,7 +54,6 @@ public class RoomManager : MonoBehaviour
 public class Room
 {
     public string Name = "New Room";
-    public Sprite Sprite;
     public GameObject Object;
     public AudioClip Clip;
 }
