@@ -8,8 +8,6 @@ public class Stat
     [Range(0.0f, 1.0f)]
     private float value = 1;
 
-    public AnimationCurve ValueCurve;
-
     public float Value
     {
         get => value;

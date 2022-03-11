@@ -7,9 +7,9 @@ public class Stage
     public string Name;
 
     [Header("Stats")]
-    public Stat Affection;
-    public Stat Hunger;
-    public Stat Cleanliness;
+    public AnimationCurve AffectionCurve;
+    public AnimationCurve HungerCurve;
+    public AnimationCurve CleanlinessCurve;
 
     [Header("Event")]
     public UnityEvent OnGrowth;

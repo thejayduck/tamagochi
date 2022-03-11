@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+#region ENUMS
 public enum StatesEnum
 {
     Happy,
@@ -15,16 +16,20 @@ public enum StagesEnum
     Adolescent,
     Adult
 }
+#endregion
 
 public class PetStats : SingletonBehaviour<PetStats>
 {
+    UIManager uiManager;
+
     [Header("Experience")]
     [ReadOnly] public StagesEnum Stage;
-
     private int maxLevel;
+    private int previousExperience = 0;
+    private int nextExperience = 0;
+
     public int TotalExperience;
     public int CurrentLevel;
-    public int RemainingExperience;
     public AnimationCurve ExperienceCurve;
     public UnityEvent OnLevelUp;
 
@@ -33,15 +38,34 @@ public class PetStats : SingletonBehaviour<PetStats>
     public Stage[] Stages;
 
     [Header("Health")]
+    [ReadOnly] public StatesEnum CurrentState;
     [Range(0.0f, 1.0f)]
     public float OverallHealth;
-    [ReadOnly] public StatesEnum CurrentState;
     public AnimationCurve HealthCurve; // TODO implement
+    public Stat Affection;
+    public Stat Hunger;
+    public Stat Cleanliness;
 
     private void Start()
     {
+        uiManager = UIManager.Instance;
         maxLevel = (int)ExperienceCurve[ExperienceCurve.length - 1].time;
         Initialize();
+    }
+
+    private void Update()
+    {
+        var _cleanliness = CurrentStage.CleanlinessCurve.Evaluate(Cleanliness.Value);
+        var _hunger = CurrentStage.HungerCurve.Evaluate(Hunger.Value);
+        var _affection = CurrentStage.AffectionCurve.Evaluate(Affection.Value);
+
+        Cleanliness.Value -= _cleanliness * Time.deltaTime;
+        Hunger.Value -= _hunger * Time.deltaTime;
+        Affection.Value -= _affection * Time.deltaTime;
+
+        CalculateOverall();
+        CalculateLevel();
+        uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience);
     }
 
     private void Initialize() // TODO load data from save
@@ -69,34 +93,30 @@ public class PetStats : SingletonBehaviour<PetStats>
 
     public void CalculateLevel() 
     {
-
-        int nextExperience = 0;
-        int currentExperience = 0;
-
-        currentExperience = (int)ExperienceCurve.Evaluate(CurrentLevel);
+        previousExperience = (int)ExperienceCurve.Evaluate(CurrentLevel);
         nextExperience = (int)ExperienceCurve.Evaluate(CurrentLevel + 1);
 
-        if((TotalExperience - currentExperience) < 0)
+        if((TotalExperience - previousExperience) < 0)
             CurrentLevel--;
 
         if(CurrentLevel == maxLevel)
             return;
 
         if((nextExperience - TotalExperience) <= 0) {
-            CurrentLevel++;
+            CurrentStage.OnGrowth.Invoke();
             OnLevelUp.Invoke();
+            CurrentLevel++;
         }
 
         SwitchStage(CurrentLevel);
 
         CurrentLevel = Mathf.Clamp(CurrentLevel, 0, 2);
         TotalExperience = Mathf.Clamp(TotalExperience, 0, 500);
-        RemainingExperience = (nextExperience - TotalExperience);
     }
 
     public void CalculateOverall()
     {
-        OverallHealth = (Mathf.Pow(CurrentStage.Cleanliness.Value, 1.2f) + Mathf.Pow(CurrentStage.Hunger.Value, 1.2f) + CurrentStage.Affection.Value) / 3;
+        OverallHealth = (Mathf.Pow(Cleanliness.Value, 1.2f) + Mathf.Pow(Hunger.Value, 1.2f) + Affection.Value) / 3;
         if (OverallHealth > 0.85f)
         {
             CurrentState = StatesEnum.Happy;
@@ -129,22 +149,8 @@ public class PetStats : SingletonBehaviour<PetStats>
         // TODO load state
     }
 
-    private void Update()
-    {
-        var _cleanliness = CurrentStage.Cleanliness.ValueCurve.Evaluate(CurrentStage.Cleanliness.Value);
-        var _hunger = CurrentStage.Hunger.ValueCurve.Evaluate(CurrentStage.Hunger.Value);
-        var _affection = CurrentStage.Affection.ValueCurve.Evaluate(CurrentStage.Affection.Value);
-
-        CurrentStage.Cleanliness.Value -= _cleanliness * Time.deltaTime;
-        CurrentStage.Hunger.Value -= _hunger * Time.deltaTime;
-        CurrentStage.Affection.Value -= _affection * Time.deltaTime;
-
-        CalculateOverall();
-        CalculateLevel();
-    }
-
     public void Pet()
     {
-        CurrentStage.Affection.Value += 0.1f;
+        Affection.Value += 0.1f;
     }
 }

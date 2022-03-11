@@ -1,13 +1,29 @@
 using UnityEngine;
+
 public class Ball : MonoBehaviour
 {
-    private Rigidbody2D rb => GetComponent<Rigidbody2D>();
+    private PetStats stats;
+
+    private Rigidbody2D rb;
+
     private Vector2 offset;
     private Vector2 curScreenPoint;
     private Vector2 curPosition;
     private Vector2 velocity;
     private Vector2 delta;
+
     private bool dragging = false;
+    private bool collided;
+
+    public AnimationCurve Curve;
+    public AudioSource Source;
+    public AudioClip Clip;
+
+    private void Start()
+    {
+        stats = PetStats.Instance;
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void OnMouseDown()
     {
@@ -59,6 +75,13 @@ public class Ball : MonoBehaviour
                 velocity.y *= -0.85f;
                 rb.AddTorque(-velocity.x * 5f);
                 screenPosition.y = screenPosition.y < ballRadius ? ballRadius : Screen.height - ballRadius;
+            }
+
+            collided = rb.velocity.magnitude <= 1f;
+
+            if(!collided)
+            {
+                Source.PlayOneShot(Clip);
             }
 
             var newWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
