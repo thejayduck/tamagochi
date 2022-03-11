@@ -28,7 +28,7 @@ public class Wash : MonoBehaviour
         var worldPos = Camera.main.ScreenToWorldPoint(mousePos);
 
         var mouseDelta = ((Vector2)mousePos - prevMouse).magnitude * Time.deltaTime;
-        Stats.Cleanliness.Value += mouseDelta / 50f;
+        Stats.CurrentStage.Cleanliness.Value += mouseDelta / 50f;
 
         Soap.transform.position = worldPos;
         Foam.transform.position = worldPos;
