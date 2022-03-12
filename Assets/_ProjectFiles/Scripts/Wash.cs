@@ -25,7 +25,7 @@ public class Wash : PickableBase
         base.OnMouseDrag();
 
         var mouseDelta = delta.magnitude * Time.deltaTime;
-        Stats.Cleanliness.Value += mouseDelta / 50f;
+        Stats.Cleanliness.Value += Curve.Evaluate(mouseDelta);
 
         Foam.transform.position = curPosition;
     }
