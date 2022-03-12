@@ -1,42 +1,39 @@
 using UnityEngine;
 
-public class Wash : MonoBehaviour
+public class Wash : PickableBase
 {
     private PetStats Stats;
-    private Vector2 prevMouse;
-    
-    public SpriteRenderer Target;
-    public GameObject Soap;
     public ParticleSystem Foam;
+    public AnimationCurve Curve;
 
-    private void Start()
+    private new void Start()
     {
+        base.Start();
         Stats = PetStats.Instance;
     }
 
-    private void OnMouseDown()
+    private new void OnMouseDown()
     {
+        base.OnMouseDown();
+
         Foam.Pause();
-        prevMouse = Input.mousePosition;
         Foam.Play();
     }
 
-    private void OnMouseDrag()
+    private new void OnMouseDrag()
     {
-        var mousePos = Input.mousePosition;
-        mousePos.z = Camera.main.nearClipPlane;
-        var worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        base.OnMouseDrag();
 
-        var mouseDelta = ((Vector2)mousePos - prevMouse).magnitude * Time.deltaTime;
+        var mouseDelta = delta.magnitude * Time.deltaTime;
         Stats.Cleanliness.Value += mouseDelta / 50f;
 
-        Soap.transform.position = worldPos;
-        Foam.transform.position = worldPos;
-        prevMouse = Input.mousePosition;
+        Foam.transform.position = curPosition;
     }
 
-    private void OnMouseUp()
+    private new void OnMouseUp()
     {
-        Soap.transform.localPosition = new Vector2(0.0f, 0.0f); 
+        base.OnMouseUp();
+
+        Target.transform.localPosition = new Vector2(0.0f, 0.0f); 
     }
 }

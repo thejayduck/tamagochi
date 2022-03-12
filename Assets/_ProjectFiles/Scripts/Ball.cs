@@ -1,57 +1,45 @@
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class Ball : PickableBase
 {
     private PetStats stats;
-
+    
     private Rigidbody2D rb;
 
-    private Vector2 offset;
-    private Vector2 curScreenPoint;
-    private Vector2 curPosition;
-    private Vector2 velocity;
-    private Vector2 delta;
-
-    private bool dragging = false;
-    private bool collided;
-
     public AnimationCurve Curve;
-    public AudioSource Source;
-    public AudioClip Clip;
+    public AudioClip BounceClip;
 
-    private void Start()
+    private new void Start()
     {
+        base.Start();
+
         stats = PetStats.Instance;
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnMouseDown()
+    private new void OnMouseDown()
     {
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f));
+        base.OnMouseDown();
     }
 
-    private void OnMouseDrag()
+    private new void OnMouseDrag()
     {
-        curScreenPoint = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        curPosition = (Vector2)Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-        delta = curPosition - (Vector2)transform.position;
-        transform.position = curPosition;
+        base.OnMouseDrag();
+
         rb.velocity = Vector2.zero;
-
-        dragging = true;
     }
 
-    private void OnMouseUp() 
+    private new void OnMouseUp() 
     {
+        base.OnMouseUp();
+
         velocity = delta.normalized / Time.deltaTime;
         rb.AddForce(velocity * delta.magnitude, ForceMode2D.Impulse);
-
-        dragging = false;
     }
 
     void Update()
     {
-        var screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+        var screenPosition = Camera.main.WorldToScreenPoint(Target.transform.position);
         var ballRadius = Mathf.Abs(Camera.main.WorldToScreenPoint(Vector3.one * 0.8f).x - Camera.main.WorldToScreenPoint(Vector3.zero).x);
         if (
             (screenPosition.y > Screen.height - ballRadius) 
@@ -77,16 +65,15 @@ public class Ball : MonoBehaviour
                 screenPosition.y = screenPosition.y < ballRadius ? ballRadius : Screen.height - ballRadius;
             }
 
-            collided = rb.velocity.magnitude <= 1f;
 
-            if(!collided)
+            if(rb.velocity.magnitude >= 2.5f)
             {
-                Source.PlayOneShot(Clip);
+                source.PlayOneShot(BounceClip);
             }
 
             var newWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             rb.velocity = velocity;
-            transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
+            Target.transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
         }
     }
 }
