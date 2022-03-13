@@ -5,11 +5,7 @@ using UnityEngine.Events;
 public class Stage
 {
     public string Name;
-
-    [Header("Stats")]
-    public AnimationCurve AffectionCurve;
-    public AnimationCurve HungerCurve;
-    public AnimationCurve CleanlinessCurve;
+    public StageObject Level;
 
     [Header("Event")]
     public UnityEvent OnGrowth;

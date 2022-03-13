@@ -61,9 +61,9 @@ public class PetStats : SingletonBehaviour<PetStats>
 
     private void Update()
     {
-        var _cleanliness = CurrentStage.CleanlinessCurve.Evaluate(Cleanliness.Value);
-        var _hunger = CurrentStage.HungerCurve.Evaluate(Hunger.Value);
-        var _affection = CurrentStage.AffectionCurve.Evaluate(Affection.Value);
+        var _cleanliness = CurrentStage.Level.CleanlinessCurve.Evaluate(Cleanliness.Value);
+        var _hunger = CurrentStage.Level.HungerCurve.Evaluate(Hunger.Value);
+        var _affection = CurrentStage.Level.AffectionCurve.Evaluate(Affection.Value);
 
         Cleanliness.Value -= _cleanliness * Time.deltaTime;
         Hunger.Value -= _hunger * Time.deltaTime;
@@ -160,10 +160,9 @@ public class PetStats : SingletonBehaviour<PetStats>
                     TotalExperience += Hunger.IncrementCurve.Evaluate(increment);
                 break;
             case StatEnum.Cleanliness:
-                Cleanliness.Value += increment / 50f;
+                Cleanliness.Value += increment / 20f;
                 if (Cleanliness.Value < 0.9f)
                     TotalExperience += Cleanliness.IncrementCurve.Evaluate(increment);
-                print(increment);
                 break;
         }
     }

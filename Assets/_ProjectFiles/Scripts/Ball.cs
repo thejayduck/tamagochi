@@ -75,7 +75,6 @@ public class Ball : PickableBase
             rb.velocity = velocity;
             Target.transform.position = new Vector2(newWorldPosition.x, newWorldPosition.y);
         }
-        print(rb.velocity.magnitude);
         if (rb.velocity.magnitude > 10f)
         {
             stats.IncrementStat(StatEnum.Affection, Curve.Evaluate(rb.velocity.magnitude));

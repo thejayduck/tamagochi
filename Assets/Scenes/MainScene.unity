@@ -8861,303 +8861,18 @@ MonoBehaviour:
         m_CallState: 2
   CurrentStage:
     Name: 
-    AffectionCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    HungerCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    CleanlinessCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    Level: {fileID: 0}
     OnGrowth:
       m_PersistentCalls:
         m_Calls: []
   Stages:
   - Name: Puppy
-    AffectionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.0013378905
-        inSlope: 0.000120291734
-        outSlope: 0.000120291734
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.40716225
-        value: 0.0013868688
-        inSlope: 0.002907856
-        outSlope: 0.002907856
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.2574827
-      - serializedVersion: 3
-        time: 0.87503713
-        value: 0.0065110717
-        inSlope: -0.008995395
-        outSlope: -0.008995395
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1
-        value: 0
-        inSlope: -0.02894287
-        outSlope: -0.02894287
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    HungerCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.005
-        inSlope: 0.020687476
-        outSlope: 0.020687476
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.09793392
-        value: 0.0070260055
-        inSlope: -0.016482787
-        outSlope: -0.016482787
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.18019678
-      - serializedVersion: 3
-        time: 0.42180794
-        value: 0.006055732
-        inSlope: 0.0027676038
-        outSlope: 0.0027676038
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.35724038
-      - serializedVersion: 3
-        time: 0.58328176
-        value: 0.009095106
-        inSlope: 0.002907856
-        outSlope: 0.002907856
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.2574827
-      - serializedVersion: 3
-        time: 0.6866238
-        value: 0.008085379
-        inSlope: -0.025818294
-        outSlope: -0.025818294
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.23135218
-      - serializedVersion: 3
-        time: 0.8137613
-        value: 0.006974174
-        inSlope: -0.06897878
-        outSlope: -0.06897878
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.24019636
-      - serializedVersion: 3
-        time: 1.1
-        value: 0
-        inSlope: -0.024364887
-        outSlope: -0.024364887
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    CleanlinessCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.003116846
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.003116846
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    Level: {fileID: 11400000, guid: beb255a9619f404fc8f9456a3253ef79, type: 2}
     OnGrowth:
       m_PersistentCalls:
         m_Calls: []
   - Name: Adolescent
-    AffectionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.0013378905
-        inSlope: 0.000120291734
-        outSlope: 0.000120291734
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.40716225
-        value: 0.0013868688
-        inSlope: 0.002907856
-        outSlope: 0.002907856
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.2574827
-      - serializedVersion: 3
-        time: 0.87503713
-        value: 0.0065110717
-        inSlope: -0.008995395
-        outSlope: -0.008995395
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1
-        value: 0
-        inSlope: -0.02894287
-        outSlope: -0.02894287
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    HungerCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.005
-        inSlope: 0.020687476
-        outSlope: 0.020687476
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.09793392
-        value: 0.0070260055
-        inSlope: -0.016482787
-        outSlope: -0.016482787
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.18019678
-      - serializedVersion: 3
-        time: 0.42180794
-        value: 0.006055732
-        inSlope: 0.0027676038
-        outSlope: 0.0027676038
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.35724038
-      - serializedVersion: 3
-        time: 0.58328176
-        value: 0.009095106
-        inSlope: 0.002907856
-        outSlope: 0.002907856
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.2574827
-      - serializedVersion: 3
-        time: 0.6866238
-        value: 0.008085379
-        inSlope: -0.025818294
-        outSlope: -0.025818294
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.23135218
-      - serializedVersion: 3
-        time: 0.8137613
-        value: 0.006974174
-        inSlope: -0.06897878
-        outSlope: -0.06897878
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.24019636
-      - serializedVersion: 3
-        time: 1.1
-        value: 0
-        inSlope: -0.024364887
-        outSlope: -0.024364887
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    CleanlinessCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.003116846
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.003116846
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    Level: {fileID: 11400000, guid: 1a88cd3ce2bdd4c5f8c911a0770b4833, type: 2}
     OnGrowth:
       m_PersistentCalls:
         m_Calls:
@@ -9174,141 +8889,7 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   - Name: Adult
-    AffectionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.0013378905
-        inSlope: 0.000120291734
-        outSlope: 0.000120291734
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.40716225
-        value: 0.0013868688
-        inSlope: 0.002907856
-        outSlope: 0.002907856
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.2574827
-      - serializedVersion: 3
-        time: 0.87503713
-        value: 0.0065110717
-        inSlope: -0.008995395
-        outSlope: -0.008995395
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1
-        value: 0
-        inSlope: -0.02894287
-        outSlope: -0.02894287
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    HungerCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.005
-        inSlope: 0.020687476
-        outSlope: 0.020687476
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.09793392
-        value: 0.0070260055
-        inSlope: -0.016482787
-        outSlope: -0.016482787
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.18019678
-      - serializedVersion: 3
-        time: 0.42180794
-        value: 0.006055732
-        inSlope: 0.0027676038
-        outSlope: 0.0027676038
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.35724038
-      - serializedVersion: 3
-        time: 0.58328176
-        value: 0.009095106
-        inSlope: 0.002907856
-        outSlope: 0.002907856
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.2574827
-      - serializedVersion: 3
-        time: 0.6866238
-        value: 0.008085379
-        inSlope: -0.025818294
-        outSlope: -0.025818294
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.23135218
-      - serializedVersion: 3
-        time: 0.8137613
-        value: 0.006974174
-        inSlope: -0.06897878
-        outSlope: -0.06897878
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.24019636
-      - serializedVersion: 3
-        time: 1.1
-        value: 0
-        inSlope: -0.024364887
-        outSlope: -0.024364887
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    CleanlinessCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.003116846
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.003116846
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    Level: {fileID: 11400000, guid: 04980151e5c2255dd8d9bfa71b5fd7bb, type: 2}
     OnGrowth:
       m_PersistentCalls:
         m_Calls: []
@@ -9393,7 +8974,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Affection:
-    value: 0.5
+    value: 0.8
     IncrementCurve:
       serializedVersion: 2
       m_Curve:
@@ -9440,7 +9021,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   Hunger:
-    value: 0.5
+    value: 0.8
     IncrementCurve:
       serializedVersion: 2
       m_Curve:
@@ -9469,7 +9050,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   Cleanliness:
-    value: 0.5
+    value: 0.8
     IncrementCurve:
       serializedVersion: 2
       m_Curve:
