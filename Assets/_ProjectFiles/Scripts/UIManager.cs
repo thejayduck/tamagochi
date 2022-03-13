@@ -20,7 +20,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         stats = PetStats.Instance;
     }
 
-    public void UpdateProgressBars(int previousExperience, int nextExperience, int totalExperience)
+    public void UpdateProgressBars(int previousExperience, int nextExperience, float totalExperience)
     {
         AffectionSlider.value = stats.Affection.Value;
         HungerSlider.value = stats.Hunger.Value;
@@ -28,11 +28,11 @@ public class UIManager : SingletonBehaviour<UIManager>
 
         // Experience Slider
         var requiredLevelExp = nextExperience - previousExperience;
-        var currentLevelExp = totalExperience - previousExperience;
+        var currentLevelExp = (int)totalExperience - previousExperience;
         
         ExperienceSlider.value = (float)currentLevelExp / requiredLevelExp;
         CurExperienceText.SetText(currentLevelExp.ToString());
-        NextExperienceText.SetText((nextExperience - totalExperience).ToString());
+        NextExperienceText.SetText((nextExperience - (int)totalExperience).ToString());
 
     }
 }

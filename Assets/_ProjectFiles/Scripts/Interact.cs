@@ -4,11 +4,23 @@ using UnityEngine.Events;
 
 public class Interact : MonoBehaviour
 {
+    private PetStats stats;
+
     public UnityEvent Events;
+
+    private void Start()
+    {
+        stats = PetStats.Instance;
+    }
 
     private void OnMouseDown()
     {
         Events.Invoke();
+    }
+
+    public void Pet()
+    {
+        stats.IncrementStat(StatEnum.Affection, 0.05f);
     }
 
     public void StartCrash()
@@ -24,8 +36,8 @@ public class Interact : MonoBehaviour
 
         print("Amongus!");
 
-#if !UNITY_EDITOR
-            Utils.ForceCrash(ForcedCrashCategory.AccessViolation);
-#endif
+// #if !UNITY_EDITOR
+//             Utils.ForceCrash(ForcedCrashCategory.AccessViolation);
+// #endif
     }
 }

@@ -27,7 +27,7 @@ public abstract class PickableBase : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (PickClip)
+        if (PickClip && source)
             source.PlayOneShot(PickClip);
 
         offset = Target.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f));
@@ -40,14 +40,20 @@ public abstract class PickableBase : MonoBehaviour
         delta = curPosition - (Vector2)Target.transform.position;
         Target.transform.position = curPosition;
 
-        if (DragThreshold > 0 && delta.magnitude >= DragThreshold && !source.isPlaying){
+        if (DragThreshold > 0 
+            && delta.magnitude >= DragThreshold 
+            && !source.isPlaying
+            && source
+            && DragClip
+        )
+        {
             source.PlayOneShot(DragClip);
         }
     }
 
     public void OnMouseUp()
     {
-        if (DropClip)
+        if (DropClip && source)
             source.PlayOneShot(DropClip);
     }
 }

@@ -16,6 +16,12 @@ public enum StagesEnum
     Adolescent,
     Adult
 }
+public enum StatEnum
+{
+    Affection,
+    Hunger,
+    Cleanliness
+}
 #endregion
 
 public class PetStats : SingletonBehaviour<PetStats>
@@ -28,7 +34,7 @@ public class PetStats : SingletonBehaviour<PetStats>
     private int previousExperience = 0;
     private int nextExperience = 0;
 
-    public int TotalExperience;
+    public float TotalExperience;
     public int CurrentLevel;
     public AnimationCurve ExperienceCurve;
     public UnityEvent OnLevelUp;
@@ -139,6 +145,29 @@ public class PetStats : SingletonBehaviour<PetStats>
         }
     }
 
+    public void IncrementStat (StatEnum stat, float increment)
+    {
+        switch (stat) 
+        {
+            case StatEnum.Affection:
+                Affection.Value += increment;
+                if (Affection.Value < 0.9f)
+                    TotalExperience += Affection.IncrementCurve.Evaluate(increment);
+                break;
+            case StatEnum.Hunger:
+                Hunger.Value += increment;
+                if (Hunger.Value < 0.9f)
+                    TotalExperience += Hunger.IncrementCurve.Evaluate(increment);
+                break;
+            case StatEnum.Cleanliness:
+                Cleanliness.Value += increment / 50f;
+                if (Cleanliness.Value < 0.9f)
+                    TotalExperience += Cleanliness.IncrementCurve.Evaluate(increment);
+                print(increment);
+                break;
+        }
+    }
+
     public void SaveState()
     {
         // TODO save state
@@ -147,10 +176,5 @@ public class PetStats : SingletonBehaviour<PetStats>
     public void LoadState()
     {
         // TODO load state
-    }
-
-    public void Pet()
-    {
-        Affection.Value += 0.1f;
     }
 }
