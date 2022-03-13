@@ -5763,8 +5763,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 744149416}
-        m_TargetAssemblyTypeName: PetStats, Assembly-CSharp
+      - m_Target: {fileID: 196002464}
+        m_TargetAssemblyTypeName: Interact, Assembly-CSharp
         m_MethodName: Pet
         m_Mode: 1
         m_Arguments:
