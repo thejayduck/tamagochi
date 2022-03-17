@@ -10,6 +10,8 @@ public class Wash : PickableBase
     public ParticleSystem Foam;
     public AnimationCurve Curve;
 
+    public float DistanceThreshold = 3f;
+
     private new void Start()
     {
         base.Start();
@@ -27,22 +29,12 @@ public class Wash : PickableBase
     private new void OnMouseDrag()
     {
         base.OnMouseDrag();
-
-        // if (Vector2.Distance(Target.transform.position, DogTarget.position) < 3f)
-        // {
-        //     if (!isClose)
-        //         Foam.Play();
-
-        //     isClose = true;
-        // }
-        // else {
-        //     print("stopped");
-        //     Foam.Stop();
-        //     isClose = false;
-        // }
-
+        
         var mouseDelta = delta.magnitude * Time.deltaTime;
-        stats.IncrementStat(StatEnum.Cleanliness, mouseDelta);
+        if(Vector2.Distance(Target.transform.position, DogTarget.position) < DistanceThreshold)
+        {
+            stats.IncrementStat(StatEnum.Cleanliness, mouseDelta);
+        }
 
         Foam.transform.position = curPosition;
     }

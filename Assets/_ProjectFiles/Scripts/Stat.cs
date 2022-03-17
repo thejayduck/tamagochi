@@ -10,6 +10,8 @@ public class Stat
 
     public AnimationCurve IncrementCurve;
 
+
+
     public float Value
     {
         get => value;

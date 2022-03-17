@@ -18,11 +18,6 @@ public class Interact : MonoBehaviour
         Events.Invoke();
     }
 
-    public void Pet()
-    {
-        stats.IncrementStat(StatEnum.Affection, 0.05f);
-    }
-
     public void StartCrash()
     {
         StartCoroutine(CrashOnFinish());

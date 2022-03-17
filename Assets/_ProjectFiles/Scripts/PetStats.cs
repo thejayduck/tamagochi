@@ -31,8 +31,8 @@ public class PetStats : SingletonBehaviour<PetStats>
     [Header("Experience")]
     [ReadOnly] public StagesEnum Stage;
     private int maxLevel;
-    private int previousExperience = 0;
-    private int nextExperience = 0;
+    [HideInInspector] public int previousExperience = 0;
+    [HideInInspector] public int nextExperience = 0;
 
     public float TotalExperience;
     public int CurrentLevel;
@@ -71,7 +71,7 @@ public class PetStats : SingletonBehaviour<PetStats>
 
         CalculateOverall();
         CalculateLevel();
-        uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience);
+        uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience, Stage.ToString());
     }
 
     private void Initialize() // TODO load data from save
