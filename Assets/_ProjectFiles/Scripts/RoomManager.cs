@@ -2,23 +2,28 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RoomManager : MonoBehaviour
+public class RoomManager : SingletonBehaviour<RoomManager>
 {
-    private int _currentRoom;
+    [ReadOnly] public int CurrentRoom;
 
     public Room[] Rooms;
     public UnityEvent OnTransition;
     public AudioSource Source;
 
+   public void Initialize(SaveObject save) // TODO load data from save
+   {
+       CurrentRoom = save.RoomIndex;
+   }
+
     public void SwitchRoom(int target)
     {
-        if (_currentRoom != target)
+        if (CurrentRoom != target)
             StartCoroutine(Transition(target));
     }
 
     IEnumerator Transition(int target)
     {
-        _currentRoom = target;
+        CurrentRoom = target;
 
         OnTransition.Invoke();
 

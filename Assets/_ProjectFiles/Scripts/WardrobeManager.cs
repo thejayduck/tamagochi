@@ -1,11 +1,19 @@
 using UnityEngine;
 
-public class WardrobeManager : MonoBehaviour
+public class WardrobeManager : SingletonBehaviour<WardrobeManager>
 {
     public Wardrobe Hats;
     public Wardrobe Glasses;
     public Wardrobe Dress;
     public Wardrobe Accessories;
+
+   public void Initialize(SaveObject save) // TODO load data from save
+   {
+       Hats.Index = save.HatIndex;
+       Glasses.Index = save.GlassesIndex;
+       Dress.Index = save.DressIndex;
+       Accessories.Index = save.AccessoryIndex;
+   }
 
     public void Next(int target) {
         var wardrobe = GetWardrobe(target);

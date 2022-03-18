@@ -35,7 +35,7 @@ public class PetStats : SingletonBehaviour<PetStats>
     [HideInInspector] public int nextExperience = 0;
 
     public float TotalExperience;
-    public int CurrentLevel;
+    [ReadOnly] public int CurrentLevel;
     public AnimationCurve ExperienceCurve;
     public UnityEvent OnLevelUp;
 
@@ -74,8 +74,15 @@ public class PetStats : SingletonBehaviour<PetStats>
         uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience, Stage.ToString());
     }
 
-    private void Initialize() // TODO load data from save
+    public void Initialize() // TODO load data from save
     {
+        // TotalExperience = save.Experience;
+        // CurrentLevel = save.Level;
+
+        // Affection.Value = save.Affection;
+        // Hunger.Value = save.Hunger;
+        // Cleanliness.Value = save.Cleanliness;
+
         SwitchStage(CurrentLevel); 
     }
 
@@ -165,15 +172,5 @@ public class PetStats : SingletonBehaviour<PetStats>
                     TotalExperience += Cleanliness.IncrementCurve.Evaluate(increment);
                 break;
         }
-    }
-
-    public void SaveState()
-    {
-        // TODO save state
-    }
-
-    public void LoadState()
-    {
-        // TODO load state
     }
 }
