@@ -28,23 +28,29 @@ public class PetStats : SingletonBehaviour<PetStats>
 {
     UIManager uiManager;
 
+    public Transform ShibaObject;
+
     [Header("Experience")]
-    [ReadOnly] public StagesEnum Stage;
     private int maxLevel;
     [HideInInspector] public int previousExperience = 0;
     [HideInInspector] public int nextExperience = 0;
 
-    public float TotalExperience;
     [ReadOnly] public int CurrentLevel;
+    [ReadOnly] public StagesEnum Stage;
+
+    public float TotalExperience;
     public AnimationCurve ExperienceCurve;
     public UnityEvent OnLevelUp;
 
+
     [Header("Stages")]
     [ReadOnly] public Stage CurrentStage;
+    
     public Stage[] Stages;
 
     [Header("Health")]
     [ReadOnly] public StatesEnum CurrentState;
+
     [Range(0.0f, 1.0f)]
     public float OverallHealth;
     public AnimationCurve HealthCurve; // TODO implement
@@ -102,6 +108,7 @@ public class PetStats : SingletonBehaviour<PetStats>
                 CurrentStage = Stages[2];
                 break;
         }
+        ShibaObject.localScale = Vector3.one * CurrentStage.Scale;
     }
 
     public void CalculateLevel() 

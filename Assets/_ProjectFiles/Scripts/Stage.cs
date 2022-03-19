@@ -11,6 +11,8 @@ public class Stage
     public SpriteRenderer EyesSprite;
     public SpriteRenderer MouthSprite;
 
+    public float Scale = 1.0f;
+
     [Header("Event")]
     public UnityEvent OnGrowth;
 }

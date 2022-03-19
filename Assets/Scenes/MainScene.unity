@@ -17384,7 +17384,7 @@ Transform:
   m_GameObject: {fileID: 520121903}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.8474099, y: -3.7328343, z: 0.43934202}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_Children:
   - {fileID: 537264065}
   - {fileID: 9200724171087346024}
@@ -19682,11 +19682,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117413c9711f0beed8a4f14ef43cf226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stage: 0
+  ShibaObject: {fileID: 520121905}
   previousExperience: 0
   nextExperience: 0
-  TotalExperience: 0
   CurrentLevel: 1
+  Stage: 0
+  TotalExperience: 0
   ExperienceCurve:
     serializedVersion: 2
     m_Curve:
@@ -19780,6 +19781,7 @@ MonoBehaviour:
     MouthTransform: {fileID: 0}
     EyesSprite: {fileID: 0}
     MouthSprite: {fileID: 0}
+    Scale: 1
     OnGrowth:
       m_PersistentCalls:
         m_Calls: []
@@ -19789,6 +19791,7 @@ MonoBehaviour:
     MouthTransform: {fileID: 0}
     EyesSprite: {fileID: 0}
     MouthSprite: {fileID: 0}
+    Scale: 0.65
     OnGrowth:
       m_PersistentCalls:
         m_Calls: []
@@ -19797,6 +19800,7 @@ MonoBehaviour:
     MouthTransform: {fileID: 0}
     EyesSprite: {fileID: 0}
     MouthSprite: {fileID: 0}
+    Scale: 0.85
     OnGrowth:
       m_PersistentCalls:
         m_Calls:
@@ -19817,6 +19821,7 @@ MonoBehaviour:
     MouthTransform: {fileID: 0}
     EyesSprite: {fileID: 0}
     MouthSprite: {fileID: 0}
+    Scale: 1
     OnGrowth:
       m_PersistentCalls:
         m_Calls: []
@@ -20112,6 +20117,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8148bd4bcb6f60321b286252c16c17a7, type: 3}
     - {fileID: 21300000, guid: dd76e6edd078fb721b883370911cbcb5, type: 3}
     - {fileID: 21300000, guid: d5fe369d9d64dd90c8d376f1c3fd3b4b, type: 3}
+    - {fileID: 21300000, guid: 3233b1a60c3c9b74ca27fe6e651ea04c, type: 3}
   Glasses:
     Index: 0
     Target: {fileID: 2102506691}
