@@ -7,6 +7,8 @@ public class UIManager : SingletonBehaviour<UIManager>
     private PetStats stats;
     private TweenManager quickActionsTween;
 
+    public Toggle WardrobeToggle;
+
     [Header("Sliders")]
     public Slider AffectionSlider;
     public Slider HungerSlider;

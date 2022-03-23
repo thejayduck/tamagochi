@@ -33,7 +33,7 @@ public class Wash : PickableBase
         var mouseDelta = delta.magnitude * Time.deltaTime;
         if(Vector2.Distance(Target.transform.position, DogTarget.position) < DistanceThreshold)
         {
-            stats.IncrementStat(StatEnum.Cleanliness, mouseDelta);
+            stats.IncrementStat(StatEnum.Cleanliness, Curve.Evaluate(mouseDelta));
         }
 
         Foam.transform.position = curPosition;

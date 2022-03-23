@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Security.Cryptography;
-using System.Text;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -18,21 +17,30 @@ public class SaveManager : MonoBehaviour
         stats = PetStats.Instance;
         wardrobe = WardrobeManager.Instance;
         room = RoomManager.Instance;
+
+        if (!Directory.Exists(SAVE_LOC))
+        {
+            Directory.CreateDirectory(Directory.GetParent(SAVE_LOC).ToString());
+        }
+        
+        Load();
+
+        InvokeRepeating("Save", 5.0f, 10.0f);
     }
 
+#if UNITY_EDITOR
     private void OnGUI()
     {
         if (GUI.Button(new Rect(10, 10, 50, 50), "Save"))
         {
-            Debug.Log("Saving..");
             Save();
         }
         if (GUI.Button(new Rect(10, 100, 50, 50), "Load"))
         {
-            Debug.Log("Loading..");
             Load();
         }
     }
+#endif
 
     struct SaveFile
     {
@@ -42,6 +50,8 @@ public class SaveManager : MonoBehaviour
 
     void Save()
     {
+        Debug.Log("Saving..");
+
         SaveObject saveObject = new SaveObject
         {
             Experience = stats.TotalExperience,
@@ -58,11 +68,6 @@ public class SaveManager : MonoBehaviour
 
             RoomIndex = room.CurrentRoom,
         };
-
-        if (!Directory.Exists(SAVE_LOC))
-        {
-            Directory.CreateDirectory(Directory.GetParent(SAVE_LOC).ToString());
-        }
 
         string json = JsonConvert.SerializeObject(saveObject);
 
@@ -100,45 +105,52 @@ public class SaveManager : MonoBehaviour
 
     void Load()
     {
-        SaveFile save;
-        using (var fs = File.OpenRead(SAVE_LOC))
-        using (var sw = new StreamReader(fs))
-        using (var js = new JsonTextReader(sw))
-        {
-            var ser = new JsonSerializer();
-            save = ser.Deserialize<SaveFile>(js);
+        Debug.Log("Loading..");
+
+        if (File.Exists(SAVE_LOC)) {
+            SaveFile save;
+            using (var fs = File.OpenRead(SAVE_LOC))
+            using (var sw = new StreamReader(fs))
+            using (var js = new JsonTextReader(sw))
+            {
+                var ser = new JsonSerializer();
+                save = ser.Deserialize<SaveFile>(js);
+            }
+
+            var data = Convert.FromBase64String(save.Data);
+            string json;
+
+            using (var aes = Aes.Create())
+            {
+                aes.Key = Convert.FromBase64String("UJ3JMqwz+uD/nIVQDbDhtLHj39E77Am6X3yd9pRKjFQ=");
+                aes.IV = Convert.FromBase64String(save.IV);
+                var encryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+                using var ms = new MemoryStream(data);
+                using CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Read);
+                using var sw = new StreamReader(cs);
+                json = sw.ReadToEnd();
+            }
+
+            var saveData = JsonConvert.DeserializeObject<SaveObject>(json);
+
+            stats.TotalExperience = saveData.Experience;
+            stats.CurrentLevel = saveData.Level;
+
+            stats.Affection.Value = saveData.Affection;
+            stats.Hunger.Value = saveData.Hunger;
+            stats.Cleanliness.Value = saveData.Cleanliness;
+
+            wardrobe.Set(wardrobe.Hats, saveData.HatIndex);
+            wardrobe.Set(wardrobe.Glasses, saveData.GlassesIndex);
+            wardrobe.Set(wardrobe.Dress, saveData.DressIndex);
+            wardrobe.Set(wardrobe.Accessories, saveData.AccessoryIndex);
+
+            room.SwitchRoom(saveData.RoomIndex);
         }
-
-        var data = Convert.FromBase64String(save.Data);
-        string json;
-
-        using (var aes = Aes.Create())
-        {
-            aes.Key = Convert.FromBase64String("UJ3JMqwz+uD/nIVQDbDhtLHj39E77Am6X3yd9pRKjFQ=");
-            aes.IV = Convert.FromBase64String(save.IV);
-            var encryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
-            using var ms = new MemoryStream(data);
-            using CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Read);
-            using var sw = new StreamReader(cs);
-            json = sw.ReadToEnd();
+        else {
+            Debug.Log("Save Not Found");
         }
-
-        var saveData = JsonConvert.DeserializeObject<SaveObject>(json);
-
-        stats.TotalExperience = saveData.Experience;
-        stats.CurrentLevel = saveData.Level;
-
-        stats.Affection.Value = saveData.Affection;
-        stats.Hunger.Value = saveData.Hunger;
-        stats.Cleanliness.Value = saveData.Cleanliness;
-
-        wardrobe.Set(wardrobe.Hats, saveData.HatIndex);
-        wardrobe.Set(wardrobe.Glasses, saveData.GlassesIndex);
-        wardrobe.Set(wardrobe.Dress, saveData.DressIndex);
-        wardrobe.Set(wardrobe.Accessories, saveData.AccessoryIndex);
-
-        room.SwitchRoom(saveData.RoomIndex);
     }
 }
 

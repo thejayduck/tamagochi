@@ -30,6 +30,8 @@ public class PetStats : SingletonBehaviour<PetStats>
 
     public Transform ShibaObject;
 
+    public int Money = 100;
+
     [Header("Experience")]
     private int maxLevel;
     [HideInInspector] public int previousExperience = 0;
@@ -82,13 +84,6 @@ public class PetStats : SingletonBehaviour<PetStats>
 
     public void Initialize() // TODO load data from save
     {
-        // TotalExperience = save.Experience;
-        // CurrentLevel = save.Level;
-
-        // Affection.Value = save.Affection;
-        // Hunger.Value = save.Hunger;
-        // Cleanliness.Value = save.Cleanliness;
-
         SwitchStage(CurrentLevel); 
     }
 
@@ -102,10 +97,12 @@ public class PetStats : SingletonBehaviour<PetStats>
             case 1:
                 Stage = StagesEnum.Adolescent;
                 CurrentStage = Stages[1];
+                uiManager.WardrobeToggle.interactable = true;
                 break;
             case 2:
                 Stage = StagesEnum.Adult;
                 CurrentStage = Stages[2];
+                uiManager.WardrobeToggle.interactable = true;
                 break;
         }
         ShibaObject.localScale = Vector3.one * CurrentStage.Scale;

@@ -18070,6 +18070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8d9bfe196525e93aaca4b0b8636e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WardrobeToggle: {fileID: 2060382375}
   AffectionSlider: {fileID: 1208086791}
   HungerSlider: {fileID: 1319136941}
   CleanlinessSlider: {fileID: 332865419}
@@ -19794,15 +19795,6 @@ MonoBehaviour:
     Scale: 0.65
     OnGrowth:
       m_PersistentCalls:
-        m_Calls: []
-  - Name: Adolescent
-    Level: {fileID: 11400000, guid: 1a88cd3ce2bdd4c5f8c911a0770b4833, type: 2}
-    MouthTransform: {fileID: 0}
-    EyesSprite: {fileID: 0}
-    MouthSprite: {fileID: 0}
-    Scale: 0.85
-    OnGrowth:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2060382375}
           m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
@@ -19816,6 +19808,15 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+  - Name: Adolescent
+    Level: {fileID: 11400000, guid: 1a88cd3ce2bdd4c5f8c911a0770b4833, type: 2}
+    MouthTransform: {fileID: 0}
+    EyesSprite: {fileID: 0}
+    MouthSprite: {fileID: 0}
+    Scale: 0.85
+    OnGrowth:
+      m_PersistentCalls:
+        m_Calls: []
   - Name: Adult
     Level: {fileID: 11400000, guid: 04980151e5c2255dd8d9bfa71b5fd7bb, type: 2}
     MouthTransform: {fileID: 0}
@@ -68945,18 +68946,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0.2
-      outSlope: 0.2
+      value: 0.05
+      inSlope: 0.95
+      outSlope: 0.95
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.2
-      inSlope: 0.2
-      outSlope: 0.2
+      value: 1
+      inSlope: 0.95
+      outSlope: 0.95
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
