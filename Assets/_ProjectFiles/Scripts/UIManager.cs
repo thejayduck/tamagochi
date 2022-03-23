@@ -8,6 +8,7 @@ public class UIManager : SingletonBehaviour<UIManager>
     private TweenManager quickActionsTween;
 
     public Toggle WardrobeToggle;
+    public TMP_Text MoneyText;
 
     [Header("Sliders")]
     public Slider AffectionSlider;
@@ -19,6 +20,9 @@ public class UIManager : SingletonBehaviour<UIManager>
     public TMP_Text NextExperienceText;
 
     public GameObject QuickActions;
+
+    [Header("Wardrobe")]
+    public GameObject[] PurchaseButtons;
 
     private void Start()
     {

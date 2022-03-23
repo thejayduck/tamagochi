@@ -1,47 +1,94 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WardrobeManager : SingletonBehaviour<WardrobeManager>
 {
+    private UIManager uiManager;
+    private PetStats stats; 
+
+    [ReadOnly] public List<Wardrobe> wardrobes;
+
     public Wardrobe Hats;
     public Wardrobe Glasses;
     public Wardrobe Dress;
     public Wardrobe Accessories;
 
-    public void Initialize(SaveObject save) // TODO load data from save
+    private void Awake()
     {
-        Hats.Index = save.HatIndex;
-        Glasses.Index = save.GlassesIndex;
-        Dress.Index = save.DressIndex;
-        Accessories.Index = save.AccessoryIndex;
+        wardrobes = new List<Wardrobe>{Hats, Glasses, Dress, Accessories}; 
+
+        uiManager = UIManager.Instance; 
+        stats = PetStats.Instance;
+    }
+
+    public void Initialize()
+    {
+        Hats.PreviewIndex = Hats.Index;
+        Glasses.PreviewIndex = Glasses.Index;
+        Dress.PreviewIndex = Dress.Index;
+        Accessories.PreviewIndex = Accessories.Index;
     }
 
     public void Next(int target)
     {
-        var wardrobe = GetWardrobe(target);
-        Set(wardrobe, wardrobe.Index + 1);
+        var wardrobe = wardrobes[target];
+        Set(wardrobe, wardrobe.PreviewIndex + 1);
     }
 
     public void Prev(int target)
     {
-        var wardrobe = GetWardrobe(target);
-        Set(wardrobe, wardrobe.Index - 1);
+        var wardrobe = wardrobes[target];
+        Set(wardrobe, wardrobe.PreviewIndex - 1);
     }
 
     public void Set(Wardrobe wardrobe, int value)
     {
-        wardrobe.Index = Repeat(value, wardrobe.Options.Length);
-        wardrobe.Target.sprite = wardrobe.Options[wardrobe.Index];
+        wardrobe.PreviewIndex = Repeat(value, wardrobe.Items.Length);
+        TryApplyOrPreview(wardrobe);
     }
 
-    public Wardrobe GetWardrobe(int target)
-    => target switch
+    public void Purchase(int target)
     {
-        0 => Hats,
-        1 => Glasses,
-        2 => Dress,
-        3 => Accessories,
-        _ => throw new System.ArgumentException(),
-    };
+        var wardrobe = wardrobes[target];
+        var item = wardrobes[target].Items[wardrobes[target].PreviewIndex];
+
+        if(stats.Money >= item.Price)
+        {
+            Debug.Log($"Purchased: {item.name}");
+            stats.Money -= item.Price;
+            item.Locked = false;
+            Set(wardrobe, wardrobe.PreviewIndex);
+        }
+    }
+
+    public void Apply()
+    {
+        TryApplyOrPreview(Hats);
+        TryApplyOrPreview(Glasses);
+        TryApplyOrPreview(Dress);
+        TryApplyOrPreview(Accessories);
+    }
+
+    public void TryApplyOrPreview(Wardrobe wardrobe)
+    {
+        var currentItem = wardrobe.Items[wardrobe.PreviewIndex];
+        var uiElement = uiManager.PurchaseButtons[wardrobes.IndexOf(wardrobe)];
+
+        uiElement
+            .SetActive(currentItem.Locked);
+        uiElement.transform
+            .GetChild(0)
+            .GetComponent<TMP_Text>()
+            .text = $"Buy - {currentItem.Price}";
+
+        if (!currentItem.Locked)
+        {
+            wardrobe.Index = wardrobe.PreviewIndex;
+        }
+
+        wardrobe.Target.sprite = currentItem.Sprite;
+    }
 
     int Repeat(int v, int max) => (v % max + max) % max;
 }
@@ -49,9 +96,9 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
 [System.Serializable]
 public class Wardrobe
 {
-
     public int Index;
+    public int PreviewIndex;
 
     public SpriteRenderer Target;
-    public Sprite[] Options;
+    public WardrobeItem[] Items;
 }

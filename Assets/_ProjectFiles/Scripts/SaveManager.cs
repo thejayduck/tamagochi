@@ -54,6 +54,7 @@ public class SaveManager : MonoBehaviour
 
         SaveObject saveObject = new SaveObject
         {
+            Money = stats.Money,
             Experience = stats.TotalExperience,
             Level = stats.CurrentLevel,
 
@@ -134,6 +135,7 @@ public class SaveManager : MonoBehaviour
 
             var saveData = JsonConvert.DeserializeObject<SaveObject>(json);
 
+            stats.Money = saveData.Money;
             stats.TotalExperience = saveData.Experience;
             stats.CurrentLevel = saveData.Level;
 
@@ -145,6 +147,7 @@ public class SaveManager : MonoBehaviour
             wardrobe.Set(wardrobe.Glasses, saveData.GlassesIndex);
             wardrobe.Set(wardrobe.Dress, saveData.DressIndex);
             wardrobe.Set(wardrobe.Accessories, saveData.AccessoryIndex);
+            wardrobe.Apply();
 
             room.SwitchRoom(saveData.RoomIndex);
         }
@@ -157,6 +160,7 @@ public class SaveManager : MonoBehaviour
 public struct SaveObject
 {
     // Progress
+    public int Money;
     public float Experience;
     public int Level;
 
