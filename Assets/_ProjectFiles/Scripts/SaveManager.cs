@@ -48,7 +48,7 @@ public class SaveManager : MonoBehaviour
         public string Data;
     }
 
-    void Save()
+    public void Save()
     {
         Debug.Log("Saving..");
 

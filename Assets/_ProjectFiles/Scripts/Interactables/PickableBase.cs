@@ -32,11 +32,13 @@ public abstract class PickableBase : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        TargetSprite.color = HoverColor;   
+        if(TargetSprite)
+            TargetSprite.color = HoverColor;   
     }
     private void OnMouseExit()
     {
-        TargetSprite.color = DefaultColor;   
+        if(TargetSprite)
+            TargetSprite.color = DefaultColor;   
     }
 
     public void OnMouseDown()

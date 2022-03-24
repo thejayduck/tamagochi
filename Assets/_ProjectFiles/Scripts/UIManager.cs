@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : SingletonBehaviour<UIManager>
@@ -24,6 +26,10 @@ public class UIManager : SingletonBehaviour<UIManager>
     [Header("Wardrobe")]
     public GameObject[] PurchaseButtons;
 
+    [Header("Other")]
+    public string SceneName;
+    public AudioMixer Mixer;
+    
     private void Start()
     {
         stats = PetStats.Instance;
@@ -57,5 +63,20 @@ public class UIManager : SingletonBehaviour<UIManager>
     public void UpdateMoney(int money)
     {
         MoneyText.text = $"${money}";
+    }
+
+    public void ChangeMasterVolume(float value) => 
+        Mixer.SetFloat("volMaster", Mathf.Log(value) * 20);
+    public void ChangeSfxVolume(float value) =>
+        Mixer.SetFloat("volSFX", Mathf.Log(value) * 20);
+    public void ChangeMusicVolume(float value) =>
+        Mixer.SetFloat("volBGM", Mathf.Log(value) * 20);
+
+    public void LoadScene(string target){
+        SceneManager.LoadScene(target); 
+    }
+
+    public void Quit(){
+        Application.Quit();
     }
 }
