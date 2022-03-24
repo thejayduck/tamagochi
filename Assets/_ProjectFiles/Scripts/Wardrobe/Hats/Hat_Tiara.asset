@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Hat_Tiara
   m_EditorClassIdentifier: 
+  Name: Tiara
   Sprite: {fileID: 21300000, guid: aa55fe4dd576467c290e112b8ec84b2f, type: 3}
   Locked: 1
   Price: 10

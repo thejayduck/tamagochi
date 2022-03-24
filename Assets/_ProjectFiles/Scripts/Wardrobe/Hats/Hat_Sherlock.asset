@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Hat_Sherlock
   m_EditorClassIdentifier: 
+  Name: Sherlock's Beret
   Sprite: {fileID: 21300000, guid: f5d4a413c0bc3d3e18344cbcd43c19de, type: 3}
   Locked: 1
   Price: 10

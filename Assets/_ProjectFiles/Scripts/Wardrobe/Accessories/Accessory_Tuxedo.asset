@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Accessory_Tuxedo
   m_EditorClassIdentifier: 
+  Name: Tie
   Sprite: {fileID: 21300000, guid: ee1f86c260482416abc1f88f187b53d3, type: 3}
   Locked: 1
   Price: 0

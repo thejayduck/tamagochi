@@ -38,7 +38,7 @@ public class UIManager : SingletonBehaviour<UIManager>
             QuickActions.SetActive(true);
     }
 
-    public void UpdateProgressBars(int previousExperience, int nextExperience, float totalExperience, string stage)
+    public void UpdateProgressBars(int previousExperience, int nextExperience, float totalExperience, int nextLevel)
     {
         AffectionSlider.value = stats.Affection.Value;
         HungerSlider.value = stats.Hunger.Value;
@@ -51,7 +51,11 @@ public class UIManager : SingletonBehaviour<UIManager>
         ExperienceSlider.value = (float)currentLevelExp / requiredLevelExp;
         CurExperienceText.SetText(currentLevelExp.ToString());
         // NextExperienceText.SetText((nextExperience - (int)totalExperience).ToString());
-        NextExperienceText.SetText(stage);
+        NextExperienceText.SetText($"LVL{nextLevel}");
+    }
 
+    public void UpdateMoney(int money)
+    {
+        MoneyText.text = $"${money}";
     }
 }

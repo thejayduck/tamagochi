@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Hat_Pope
   m_EditorClassIdentifier: 
+  Name: Papal Tiara
   Sprite: {fileID: 21300000, guid: bbf78390e5fad525ca92427b6c83ba2e, type: 3}
   Locked: 1
   Price: 10

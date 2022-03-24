@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Glasses_Elvis
   m_EditorClassIdentifier: 
+  Name: Elvis Glasses
   Sprite: {fileID: 21300000, guid: 7a12f67747c7d8bb8b61f1ee20e8f07d, type: 3}
   Locked: 1
   Price: 0

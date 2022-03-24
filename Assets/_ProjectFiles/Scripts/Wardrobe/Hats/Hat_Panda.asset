@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Hat_Panda
   m_EditorClassIdentifier: 
+  Name: Panda Beanie
   Sprite: {fileID: 21300000, guid: 29c1e9ac3dc7b7aec9648bdb439d7255, type: 3}
   Locked: 1
   Price: 10

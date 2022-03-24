@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Glasses_Round
   m_EditorClassIdentifier: 
+  Name: Round Glasses
   Sprite: {fileID: 21300000, guid: fbe1aae4b01172aa084eac53fa1b6f1d, type: 3}
   Locked: 1
   Price: 0

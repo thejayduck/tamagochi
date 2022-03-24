@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Dress_Pope
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 0}
+  Name: Pope Robe
+  Sprite: {fileID: 21300000, guid: 02637a7ed27870769a8595f235540f7d, type: 3}
   Locked: 1
   Price: 0

@@ -79,7 +79,7 @@ public class PetStats : SingletonBehaviour<PetStats>
 
         CalculateOverall();
         CalculateLevel();
-        uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience, Stage.ToString());
+        uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience, CurrentLevel + 1);
     }
 
     public void Initialize() // TODO load data from save

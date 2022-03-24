@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Hat_Nun
   m_EditorClassIdentifier: 
+  Name: Cornette
   Sprite: {fileID: 21300000, guid: e14bc28689454cd18822a810bc4bf232, type: 3}
   Locked: 1
-  Price: 10
+  Price: 5

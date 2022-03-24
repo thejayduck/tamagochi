@@ -14,6 +14,14 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
     public Wardrobe Dress;
     public Wardrobe Accessories;
 
+    // TODO add sound effect on purchase
+    public Color32 AvailableColor;
+    public Color32 UnavailableColor;
+
+    public AudioSource Source;
+    public AudioClip PurchaseSFX;
+    public AudioClip FailSFX;
+
     private void Awake()
     {
         wardrobes = new List<Wardrobe>{Hats, Glasses, Dress, Accessories}; 
@@ -59,7 +67,10 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
             stats.Money -= item.Price;
             item.Locked = false;
             Set(wardrobe, wardrobe.PreviewIndex);
+            Source.PlayOneShot(PurchaseSFX);
         }
+        else 
+            Source.PlayOneShot(FailSFX);
     }
 
     public void Apply()
@@ -80,7 +91,9 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
         uiElement.transform
             .GetChild(0)
             .GetComponent<TMP_Text>()
-            .text = $"Buy - {currentItem.Price}";
+            .text = $"{currentItem.Name}\nBuy [${currentItem.Price}]";
+
+        wardrobe.Target.color = currentItem.Locked ? UnavailableColor : AvailableColor;
 
         if (!currentItem.Locked)
         {
@@ -96,8 +109,8 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
 [System.Serializable]
 public class Wardrobe
 {
-    public int Index;
-    public int PreviewIndex;
+    [ReadOnly] public int Index;
+    [ReadOnly] public int PreviewIndex;
 
     public SpriteRenderer Target;
     public WardrobeItem[] Items;

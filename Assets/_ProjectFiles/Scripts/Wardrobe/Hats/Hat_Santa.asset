@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Hat_Santa
   m_EditorClassIdentifier: 
+  Name: Santa Hat
   Sprite: {fileID: 21300000, guid: a75f528750ddbf770968c20e89e726c5, type: 3}
   Locked: 1
   Price: 10

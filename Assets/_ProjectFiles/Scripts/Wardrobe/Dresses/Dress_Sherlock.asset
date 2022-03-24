@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Dress_Sherlock
   m_EditorClassIdentifier: 
+  Name: Sherlock's Dress
   Sprite: {fileID: 21300000, guid: 38e86bb91b346506c9b43623e9a17ae1, type: 3}
   Locked: 1
   Price: 0

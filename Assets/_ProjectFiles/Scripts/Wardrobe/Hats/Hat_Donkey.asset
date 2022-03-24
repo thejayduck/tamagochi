@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Hat_Donkey
   m_EditorClassIdentifier: 
+  Name: Donkey Mask
   Sprite: {fileID: 21300000, guid: 3233b1a60c3c9b74ca27fe6e651ea04c, type: 3}
   Locked: 1
-  Price: 10
+  Price: 5
