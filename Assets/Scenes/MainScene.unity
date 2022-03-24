@@ -20044,7 +20044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &743280685
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20582,6 +20582,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c9992c74ee2f66e7bbd61216f35483bc, type: 2}
     - {fileID: 11400000, guid: d809d7934480e7a2a9cbb2f7ba485743, type: 2}
     - {fileID: 11400000, guid: 983a3e906e1911aba91f4b1884b08b9b, type: 2}
+    - {fileID: 11400000, guid: 0d8bb945f7005a2bba68e02246cb4127, type: 2}
+    - {fileID: 11400000, guid: 63c253d646dd7af06ac1acf3d539be81, type: 2}
+    - {fileID: 11400000, guid: 17f32bbe165a1ebdcbf762822a732331, type: 2}
+    - {fileID: 11400000, guid: 3325b2dbfc002ff80879e8c22a506c4f, type: 2}
   Glasses:
     Index: 0
     PreviewIndex: 0
@@ -38876,6 +38880,13 @@ MonoBehaviour:
   source: {fileID: 1288418871}
   Target: {fileID: 0}
   DragThreshold: 0.2
+  DefaultColor:
+    serializedVersion: 2
+    rgba: 0
+  HoverColor:
+    serializedVersion: 2
+    rgba: 0
+  TargetSprite: {fileID: 0}
   PickClip: {fileID: 8300000, guid: e406f8da310efdfad90112a4bdb15f98, type: 3}
   DropClip: {fileID: 8300000, guid: 62b38b9b430f76efa835fd51d0050bf7, type: 3}
   DragClip: {fileID: 8300000, guid: b5ab8e72ca1af87428c6060a65803090, type: 3}
@@ -51496,7 +51507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1625030269
 Transform:
   m_ObjectHideFlags: 0
@@ -57247,6 +57258,13 @@ MonoBehaviour:
   source: {fileID: 1847073044}
   Target: {fileID: 685762681}
   DragThreshold: 0
+  DefaultColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  HoverColor:
+    serializedVersion: 2
+    rgba: 4288322202
+  TargetSprite: {fileID: 1847073041}
   PickClip: {fileID: 8300000, guid: a9f9b55020a0d30edabe3da59c67bdfa, type: 3}
   DropClip: {fileID: 8300000, guid: e406f8da310efdfad90112a4bdb15f98, type: 3}
   DragClip: {fileID: 0}
@@ -70705,7 +70723,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6901901535237047859}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.008727774, y: -0, z: -0, w: 0.9999619}
   m_LocalPosition: {x: 2.82, y: -2.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -70713,7 +70731,7 @@ Transform:
   - {fileID: 6901901534801378025}
   m_Father: {fileID: 1625030269}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1, y: 0, z: 0}
 --- !u!114 &6901901535237047861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70734,6 +70752,13 @@ MonoBehaviour:
   source: {fileID: 6901901535237047863}
   Target: {fileID: 6901901533770865986}
   DragThreshold: 0.1
+  DefaultColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  HoverColor:
+    serializedVersion: 2
+    rgba: 4288322202
+  TargetSprite: {fileID: 6901901533770865988}
   PickClip: {fileID: 8300000, guid: e406f8da310efdfad90112a4bdb15f98, type: 3}
   DropClip: {fileID: 8300000, guid: 62b38b9b430f76efa835fd51d0050bf7, type: 3}
   DragClip: {fileID: 8300000, guid: 40eac8c14ce2c08859640a09549d22cb, type: 3}

@@ -12,6 +12,11 @@ public abstract class PickableBase : MonoBehaviour
     public GameObject Target;
     public float DragThreshold;
 
+    [Header("Highlight")]
+    public Color32 DefaultColor = new Color32(255, 255, 255, 255);
+    public Color32 HoverColor = new Color32(154, 154, 154, 255);
+    public SpriteRenderer TargetSprite;
+
     [Header("Audio")]
     public AudioClip PickClip;
     public AudioClip DropClip;
@@ -25,8 +30,18 @@ public abstract class PickableBase : MonoBehaviour
             Target = this.gameObject;
     }
 
+    private void OnMouseEnter()
+    {
+        TargetSprite.color = HoverColor;   
+    }
+    private void OnMouseExit()
+    {
+        TargetSprite.color = DefaultColor;   
+    }
+
     public void OnMouseDown()
     {
+
         if (PickClip && source)
             source.PlayOneShot(PickClip);
 
