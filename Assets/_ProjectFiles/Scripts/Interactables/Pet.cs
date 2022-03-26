@@ -4,7 +4,12 @@ public class Pet : MonoBehaviour
 {
     private PetStats stats;
 
+    [Header("State")]
     public ParticleSystem HeartParticle;
+    public SpriteStateManager StateManager;
+
+    public float Increment = 0.05f;
+    public string TargetState = "Happy";
 
     private void Start()
     {
@@ -13,7 +18,9 @@ public class Pet : MonoBehaviour
 
     public void Caress()
     {
-        stats.IncrementStat(StatEnum.Affection, 0.05f);
+        stats.IncrementStat(StatEnum.Affection, Increment);
         HeartParticle.Play();
+
+        StateManager.ChangeState(TargetState);
     }
 }

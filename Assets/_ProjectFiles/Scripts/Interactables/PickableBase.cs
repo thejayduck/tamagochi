@@ -22,9 +22,13 @@ public abstract class PickableBase : MonoBehaviour
     public AudioClip DropClip;
     public AudioClip DragClip;
 
+    [Header("State")]
+    public SpriteStateManager StateManager;
+    public string TargetState = "Target State";
+
     public void Start()
     {
-        source = GetComponent<AudioSource>();   
+        source = GetComponent<AudioSource>();
 
         if (Target == null)
             Target = this.gameObject;
@@ -32,13 +36,13 @@ public abstract class PickableBase : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(TargetSprite)
-            TargetSprite.color = HoverColor;   
+        if (TargetSprite)
+            TargetSprite.color = HoverColor;
     }
     private void OnMouseExit()
     {
-        if(TargetSprite)
-            TargetSprite.color = DefaultColor;   
+        if (TargetSprite)
+            TargetSprite.color = DefaultColor;
     }
 
     public void OnMouseDown()
@@ -57,8 +61,8 @@ public abstract class PickableBase : MonoBehaviour
         delta = curPosition - (Vector2)Target.transform.position;
         Target.transform.position = curPosition;
 
-        if (DragThreshold > 0 
-            && delta.magnitude >= DragThreshold 
+        if (DragThreshold > 0
+            && delta.magnitude >= DragThreshold
             && !source.isPlaying
             && source
             && DragClip

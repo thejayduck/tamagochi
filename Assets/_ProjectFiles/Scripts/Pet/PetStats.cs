@@ -44,10 +44,17 @@ public class PetStats : SingletonBehaviour<PetStats>
     public AnimationCurve ExperienceCurve;
     public UnityEvent OnLevelUp;
 
+    [Header("State")]
+    public SpriteStateManager HungerStateManager;
+    public SpriteStateManager CleanlinessStateManager;
+    public string HungerState = "Hungry";
+    public float HungerThreshold = 0.5f;
+    public string CleanlinessState = "Dirty";
+    public float CleanlinessThreshold = 0.5f;
 
     [Header("Stages")]
     [ReadOnly] public Stage CurrentStage;
-    
+
     public Stage[] Stages;
 
     [Header("Health")]
@@ -80,16 +87,22 @@ public class PetStats : SingletonBehaviour<PetStats>
         CalculateOverall();
         CalculateLevel();
         uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience, CurrentLevel + 1);
+
+        if (Hunger.Value <= HungerThreshold)
+            HungerStateManager.ChangeState(HungerState);
+        if (Cleanliness.Value <= CleanlinessThreshold)
+            CleanlinessStateManager.ChangeState(CleanlinessState);
     }
 
     public void Initialize() // TODO load data from save
     {
-        SwitchStage(CurrentLevel); 
+        SwitchStage(CurrentLevel);
     }
 
     private void SwitchStage(int target)
     {
-        switch (CurrentLevel){
+        switch (CurrentLevel)
+        {
             case 0:
                 Stage = StagesEnum.Puppy;
                 CurrentStage = Stages[0];
@@ -108,18 +121,19 @@ public class PetStats : SingletonBehaviour<PetStats>
         ShibaObject.localScale = Vector3.one * CurrentStage.Scale;
     }
 
-    public void CalculateLevel() 
+    public void CalculateLevel()
     {
         previousExperience = (int)ExperienceCurve.Evaluate(CurrentLevel);
         nextExperience = (int)ExperienceCurve.Evaluate(CurrentLevel + 1);
 
-        if((TotalExperience - previousExperience) < 0)
+        if ((TotalExperience - previousExperience) < 0)
             CurrentLevel--;
 
-        if(CurrentLevel == maxLevel)
+        if (CurrentLevel == maxLevel)
             return;
 
-        if((nextExperience - TotalExperience) <= 0) {
+        if ((nextExperience - TotalExperience) <= 0)
+        {
             CurrentStage.OnGrowth.Invoke();
             OnLevelUp.Invoke();
             CurrentLevel++;
@@ -156,9 +170,9 @@ public class PetStats : SingletonBehaviour<PetStats>
         }
     }
 
-    public void IncrementStat (StatEnum stat, float increment)
+    public void IncrementStat(StatEnum stat, float increment)
     {
-        switch (stat) 
+        switch (stat)
         {
             case StatEnum.Affection:
                 Affection.Value += increment;

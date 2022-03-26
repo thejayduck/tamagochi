@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: In Ear Headphone
   Sprite: {fileID: 21300000, guid: 63c95a1f1b6647424a942d1048b5303f, type: 3}
   Locked: 1
-  Price: 0
+  Price: 20

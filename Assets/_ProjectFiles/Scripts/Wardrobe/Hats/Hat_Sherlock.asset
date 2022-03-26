@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Sherlock's Beret
   Sprite: {fileID: 21300000, guid: f5d4a413c0bc3d3e18344cbcd43c19de, type: 3}
   Locked: 1
-  Price: 10
+  Price: 30

@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Round Glasses
   Sprite: {fileID: 21300000, guid: fbe1aae4b01172aa084eac53fa1b6f1d, type: 3}
   Locked: 1
-  Price: 0
+  Price: 25

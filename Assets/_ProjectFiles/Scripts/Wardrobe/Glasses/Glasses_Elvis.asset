@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Elvis Glasses
   Sprite: {fileID: 21300000, guid: 7a12f67747c7d8bb8b61f1ee20e8f07d, type: 3}
   Locked: 1
-  Price: 0
+  Price: 50

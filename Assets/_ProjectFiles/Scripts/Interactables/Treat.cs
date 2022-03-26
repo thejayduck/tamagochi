@@ -24,18 +24,21 @@ public class Treat : PickableBase
     private new void OnMouseDrag()
     {
         base.OnMouseDrag();
+
+        if (Vector2.Distance(Target.transform.position, DogTarget.position) < DistanceThreshold)
+            StateManager.ChangeState(TargetState);
     }
 
-    private new void OnMouseUp() 
+    private new void OnMouseUp()
     {
         base.OnMouseUp();
-        
+
         if (Vector2.Distance(Target.transform.position, DogTarget.position) < DistanceThreshold)
         {
             stats.IncrementStat(StatEnum.Hunger, 0.1f);
             OnEat.Invoke();
         }
-            
+
 
         Target.gameObject.transform.localPosition = Vector2.zero;
     }

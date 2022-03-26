@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Party Hat
   Sprite: {fileID: 21300000, guid: 85245f32e0f119c6d9a74acbd9364c7c, type: 3}
-  Locked: 1
-  Price: 10
+  Locked: 0
+  Price: 0

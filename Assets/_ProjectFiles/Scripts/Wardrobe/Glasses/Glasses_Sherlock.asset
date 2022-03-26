@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faae6e739532acc7381b599137e146c7, type: 3}
   m_Name: Glasses_Sherlock
   m_EditorClassIdentifier: 
-  Name: VR Headset
+  Name: Monocle
   Sprite: {fileID: 21300000, guid: 51b42de886a7423f681f31a12a2dbf97, type: 3}
   Locked: 1
-  Price: 0
+  Price: 50

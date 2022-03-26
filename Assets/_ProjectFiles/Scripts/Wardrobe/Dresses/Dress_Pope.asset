@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Pope Robe
   Sprite: {fileID: 21300000, guid: 02637a7ed27870769a8595f235540f7d, type: 3}
   Locked: 1
-  Price: 0
+  Price: 300

@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Tuxedo
   Sprite: {fileID: 21300000, guid: e7415c38b33c214c5b594b68269df26f, type: 3}
   Locked: 1
-  Price: 0
+  Price: 120

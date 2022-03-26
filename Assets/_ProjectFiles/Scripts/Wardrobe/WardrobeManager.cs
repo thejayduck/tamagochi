@@ -5,7 +5,7 @@ using UnityEngine;
 public class WardrobeManager : SingletonBehaviour<WardrobeManager>
 {
     private UIManager uiManager;
-    private PetStats stats; 
+    private PetStats stats;
 
     [ReadOnly] public List<Wardrobe> wardrobes;
 
@@ -24,9 +24,9 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
 
     private void Awake()
     {
-        wardrobes = new List<Wardrobe>{Hats, Glasses, Dress, Accessories}; 
+        wardrobes = new List<Wardrobe> { Hats, Glasses, Dress, Accessories };
 
-        uiManager = UIManager.Instance; 
+        uiManager = UIManager.Instance;
         stats = PetStats.Instance;
     }
 
@@ -61,15 +61,18 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
         var wardrobe = wardrobes[target];
         var item = wardrobes[target].Items[wardrobes[target].PreviewIndex];
 
-        if(stats.Money >= item.Price)
+        if (stats.Money >= item.Price)
         {
             Debug.Log($"Purchased: {item.name}");
+
+            wardrobe.PurchasedItems.Add(item.Name);
+
             stats.Money -= item.Price;
             item.Locked = false;
             Set(wardrobe, wardrobe.PreviewIndex);
             Source.PlayOneShot(PurchaseSFX);
         }
-        else 
+        else
             Source.PlayOneShot(FailSFX);
     }
 
@@ -109,6 +112,8 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
 [System.Serializable]
 public class Wardrobe
 {
+    public List<string> PurchasedItems = new List<string>();
+
     [ReadOnly] public int Index;
     [ReadOnly] public int PreviewIndex;
 

@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Elvis Dress
   Sprite: {fileID: 21300000, guid: 25c4a082b3b3e2ec6b6aad25a5670d70, type: 3}
   Locked: 1
-  Price: 0
+  Price: 200

@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Treat
   Sprite: {fileID: 21300000, guid: efd2a9e22778c59a490645a31a3c263d, type: 3}
   Locked: 1
-  Price: 0
+  Price: 20

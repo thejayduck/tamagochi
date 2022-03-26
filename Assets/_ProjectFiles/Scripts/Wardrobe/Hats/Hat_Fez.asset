@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Fez
   Sprite: {fileID: 21300000, guid: 8148bd4bcb6f60321b286252c16c17a7, type: 3}
   Locked: 1
-  Price: 5
+  Price: 50

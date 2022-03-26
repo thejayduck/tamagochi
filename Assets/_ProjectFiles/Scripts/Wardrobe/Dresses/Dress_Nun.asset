@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Nun Habit
   Sprite: {fileID: 21300000, guid: 2702637cba72df2b4acd138ffcf40c69, type: 3}
   Locked: 1
-  Price: 0
+  Price: 250
