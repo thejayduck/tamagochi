@@ -1,5 +1,3 @@
-using System;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,17 +13,17 @@ public class Stat
 
     public float Value
     {
-        get 
+        get
         {
-            var checkHash = new MD5CryptoServiceProvider().ComputeHash(BitConverter.GetBytes(value));
-            if(Array.Equals(checkHash, hash)) 
-            {
-                unsafe
-                {
-                    int* ptr = (int*)0;
-                    *ptr = 2;
-                }
-            }
+            // var checkHash = new MD5CryptoServiceProvider().ComputeHash(BitConverter.GetBytes(value));
+            // if(Array.Equals(checkHash, hash)) 
+            // {
+            //     unsafe
+            //     {
+            //         int* ptr = (int*)0;
+            //         *ptr = 2;
+            //     }
+            // }
 
             return value;
         }
@@ -33,7 +31,7 @@ public class Stat
         {
             this.value = value;
             this.value = Mathf.Clamp(this.value, 0.0f, 1.0f);
-            hash = new MD5CryptoServiceProvider().ComputeHash(BitConverter.GetBytes(this.value));
+            // hash = new MD5CryptoServiceProvider().ComputeHash(BitConverter.GetBytes(this.value));
             OnChange?.Invoke();
         }
     }

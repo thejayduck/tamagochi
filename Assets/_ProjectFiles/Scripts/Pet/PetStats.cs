@@ -89,7 +89,10 @@ public class PetStats : SingletonBehaviour<PetStats>
         uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience, CurrentLevel + 1);
 
         if (Hunger.Value <= HungerThreshold)
+        {
             HungerStateManager.ChangeState(HungerState);
+            print(HungerState);
+        }
         if (Cleanliness.Value <= CleanlinessThreshold)
             CleanlinessStateManager.ChangeState(CleanlinessState);
     }

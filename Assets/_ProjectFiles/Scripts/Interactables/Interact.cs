@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,13 +19,13 @@ public class Interact : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(TargetSprite)
-            TargetSprite.color = HoverColor;   
+        if (TargetSprite)
+            TargetSprite.color = HoverColor;
     }
     private void OnMouseExit()
     {
-        if(TargetSprite)
-            TargetSprite.color = DefaultColor;   
+        if (TargetSprite)
+            TargetSprite.color = DefaultColor;
     }
 
     private void OnMouseDown()
@@ -34,21 +33,21 @@ public class Interact : MonoBehaviour
         Events.Invoke();
     }
 
-    public void StartCrash()
+    public void StartEvent(Animator animator)
     {
-        StartCoroutine(CrashOnFinish());
+        animator.SetTrigger("Start");
     }
 
-    public IEnumerator CrashOnFinish()
-    {
-        AudioSource source = GameObject.Find("Amongus Source").GetComponent<AudioSource>();
-        
-        yield return new WaitUntil(() => source.isPlaying);
+    // public IEnumerator CrashOnFinish()
+    // {
+    //     AudioSource source = GameObject.Find("Amongus Source").GetComponent<AudioSource>();
 
-        print("Amongus!");
+    //     yield return new WaitUntil(() => source.isPlaying);
 
-// #if !UNITY_EDITOR
-//             Utils.ForceCrash(ForcedCrashCategory.AccessViolation);
-// #endif
-    }
+    //     print("Amongus!");
+
+    //     // #if !UNITY_EDITOR
+    //     //             Utils.ForceCrash(ForcedCrashCategory.AccessViolation);
+    //     // #endif
+    // }
 }

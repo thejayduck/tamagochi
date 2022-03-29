@@ -34,6 +34,8 @@ public class SpriteStateManager : MonoBehaviour
 
     public void ChangeState(string target, bool resetTimer = true)
     {
+        print(target);
+
         var res = Sprites.Find(x => x.Name == target);
         CurrentState = res.Name;
 
