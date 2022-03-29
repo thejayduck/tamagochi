@@ -20407,10 +20407,13 @@ MonoBehaviour:
         m_CallState: 2
   HungerStateManager: {fileID: 1801687442}
   CleanlinessStateManager: {fileID: 1801687443}
+  AffectionStateManager: {fileID: 1801687440}
   HungerState: Hunger
   HungerThreshold: 0.5
   CleanlinessState: Dirty
   CleanlinessThreshold: 0.5
+  AffectionState: Sad
+  AffectionThreshold: 0.3
   CurrentStage:
     Name: 
     Level: {fileID: 0}
