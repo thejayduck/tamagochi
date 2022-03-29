@@ -58203,6 +58203,8 @@ MonoBehaviour:
     TargetSprite: {fileID: 21300000, guid: 3229f0b3189c8a733941bbb6bac92d13, type: 3}
   - Name: Frown
     TargetSprite: {fileID: 21300000, guid: 8dabd4f3437521e93bc0e2c29be76c96, type: 3}
+  - Name: Sad
+    TargetSprite: {fileID: 21300000, guid: 2f7615d70f40ac3dda96b0c2dac19cba, type: 3}
   CurrentState: 
   DefaultState: Idle
   Cooldown: 1.3

@@ -47,10 +47,13 @@ public class PetStats : SingletonBehaviour<PetStats>
     [Header("State")]
     public SpriteStateManager HungerStateManager;
     public SpriteStateManager CleanlinessStateManager;
+    public SpriteStateManager AffectionStateManager;
     public string HungerState = "Hungry";
     public float HungerThreshold = 0.5f;
     public string CleanlinessState = "Dirty";
     public float CleanlinessThreshold = 0.5f;
+    public string AffectionState = "Sad";
+    public float AffectionThreshold = 0.3f;
 
     [Header("Stages")]
     [ReadOnly] public Stage CurrentStage;
@@ -89,12 +92,13 @@ public class PetStats : SingletonBehaviour<PetStats>
         uiManager.UpdateProgressBars(previousExperience, nextExperience, TotalExperience, CurrentLevel + 1);
 
         if (Hunger.Value <= HungerThreshold)
-        {
             HungerStateManager.ChangeState(HungerState);
-            print(HungerState);
-        }
+
         if (Cleanliness.Value <= CleanlinessThreshold)
             CleanlinessStateManager.ChangeState(CleanlinessState);
+
+        if (Affection.Value <= AffectionThreshold)
+            AffectionStateManager.ChangeState(AffectionState);
     }
 
     public void Initialize() // TODO load data from save
