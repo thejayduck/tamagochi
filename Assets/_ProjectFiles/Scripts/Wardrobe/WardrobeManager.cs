@@ -65,10 +65,8 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
         {
             Debug.Log($"Purchased: {item.name}");
 
-            wardrobe.PurchasedItems.Add(item.Name);
-
             stats.Money -= item.Price;
-            item.Locked = false;
+            wardrobe.PurchasedItems.Add(item.Name);
             Set(wardrobe, wardrobe.PreviewIndex);
             Source.PlayOneShot(PurchaseSFX);
         }
@@ -89,16 +87,18 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
         var currentItem = wardrobe.Items[wardrobe.PreviewIndex];
         var uiElement = uiManager.PurchaseButtons[wardrobes.IndexOf(wardrobe)];
 
+        var locked = !wardrobe.PurchasedItems.Contains(currentItem.Name) && currentItem.Price != 0;
+
         uiElement
-            .SetActive(currentItem.Locked);
+            .SetActive(locked);
         uiElement.transform
             .GetChild(0)
             .GetComponent<TMP_Text>()
             .text = $"{currentItem.Name}\nBuy [${currentItem.Price}]";
 
-        wardrobe.Target.color = currentItem.Locked ? UnavailableColor : AvailableColor;
+        wardrobe.Target.color = locked ? UnavailableColor : AvailableColor;
 
-        if (!currentItem.Locked)
+        if (!locked)
         {
             wardrobe.Index = wardrobe.PreviewIndex;
         }

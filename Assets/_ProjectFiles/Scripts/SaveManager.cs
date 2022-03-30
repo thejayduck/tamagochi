@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -22,7 +24,7 @@ public class SaveManager : MonoBehaviour
         {
             Directory.CreateDirectory(Directory.GetParent(SAVE_LOC).ToString());
         }
-        
+
         Load();
 
         InvokeRepeating("Save", 5.0f, 10.0f);
@@ -67,6 +69,11 @@ public class SaveManager : MonoBehaviour
             DressIndex = wardrobe.Dress.Index,
             AccessoryIndex = wardrobe.Accessories.Index,
 
+            PurchasedHats = wardrobe.Hats.PurchasedItems.ToArray(),
+            PurchasedGlasses = wardrobe.Glasses.PurchasedItems.ToArray(),
+            PurchasedDresses = wardrobe.Dress.PurchasedItems.ToArray(),
+            PurchasedAccessories = wardrobe.Accessories.PurchasedItems.ToArray(),
+
             RoomIndex = room.CurrentRoom,
         };
 
@@ -108,7 +115,8 @@ public class SaveManager : MonoBehaviour
     {
         Debug.Log("Loading..");
 
-        if (File.Exists(SAVE_LOC)) {
+        if (File.Exists(SAVE_LOC))
+        {
             SaveFile save;
             using (var fs = File.OpenRead(SAVE_LOC))
             using (var sw = new StreamReader(fs))
@@ -143,6 +151,11 @@ public class SaveManager : MonoBehaviour
             stats.Hunger.Value = saveData.Hunger;
             stats.Cleanliness.Value = saveData.Cleanliness;
 
+            wardrobe.Hats.PurchasedItems = saveData.PurchasedHats?.ToList() ?? new List<string>();
+            wardrobe.Glasses.PurchasedItems = saveData.PurchasedGlasses?.ToList() ?? new List<string>();
+            wardrobe.Dress.PurchasedItems = saveData.PurchasedDresses?.ToList() ?? new List<string>();
+            wardrobe.Accessories.PurchasedItems = saveData.PurchasedAccessories?.ToList() ?? new List<string>();
+
             wardrobe.Set(wardrobe.Hats, saveData.HatIndex);
             wardrobe.Set(wardrobe.Glasses, saveData.GlassesIndex);
             wardrobe.Set(wardrobe.Dress, saveData.DressIndex);
@@ -151,7 +164,8 @@ public class SaveManager : MonoBehaviour
 
             room.SwitchRoom(saveData.RoomIndex);
         }
-        else {
+        else
+        {
             Debug.Log("Save Not Found");
         }
     }
@@ -174,6 +188,10 @@ public struct SaveObject
     public int GlassesIndex;
     public int DressIndex;
     public int AccessoryIndex;
+    public string[] PurchasedAccessories;
+    public string[] PurchasedDresses;
+    public string[] PurchasedGlasses;
+    public string[] PurchasedHats;
 
     // Other
     public int RoomIndex;

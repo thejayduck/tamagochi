@@ -74,7 +74,7 @@ public class PetStats : SingletonBehaviour<PetStats>
     {
         uiManager = UIManager.Instance;
         maxLevel = (int)ExperienceCurve[ExperienceCurve.length - 1].time;
-        Initialize();
+        SwitchStage(CurrentLevel);
     }
 
     private void Update()
@@ -99,11 +99,6 @@ public class PetStats : SingletonBehaviour<PetStats>
 
         if (Affection.Value <= AffectionThreshold)
             AffectionStateManager.ChangeState(AffectionState);
-    }
-
-    public void Initialize() // TODO load data from save
-    {
-        SwitchStage(CurrentLevel);
     }
 
     private void SwitchStage(int target)

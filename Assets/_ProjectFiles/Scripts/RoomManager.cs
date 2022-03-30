@@ -10,11 +10,6 @@ public class RoomManager : SingletonBehaviour<RoomManager>
     public UnityEvent OnTransition;
     public AudioSource Source;
 
-   public void Initialize(SaveObject save) // TODO load data from save
-   {
-       CurrentRoom = save.RoomIndex;
-   }
-
     public void SwitchRoom(int target)
     {
         if (CurrentRoom != target)

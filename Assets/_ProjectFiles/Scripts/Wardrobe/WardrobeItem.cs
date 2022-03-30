@@ -6,6 +6,5 @@ public class WardrobeItem : ScriptableObject
     public string Name = "New Item";
 
     public Sprite Sprite;
-    public bool Locked = true;
     public int Price;
 }
