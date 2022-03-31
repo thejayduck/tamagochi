@@ -2,33 +2,24 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public float Speed;
     float val = 0;
+    Rigidbody2D rb;
 
-    [ReadOnly]
-    public float currentSpeed;
+    public float Speed;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        val = 0;
-        if (Input.GetKey(KeyCode.D))
-            val += 1;
-        if (Input.GetKey(KeyCode.A))
-            val -= 1;
+        val = Input.GetAxisRaw("Vertical");
     }
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.right * val * Speed);
-        //currentSpeed += (Speed * val - currentSpeed) / 2 * Time.deltaTime;
-        //transform.Translate(Vector3.right * currentSpeed * Time.fixedDeltaTime);
+        rb.AddForce(Vector2.up * val * Speed);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -36,7 +27,10 @@ public class CarController : MonoBehaviour
         switch (other.name)
         {
             case "Coin":
-                // TODO you lost all money
+                // TODO you lost all money.
+                break;
+            case "Coin Doge":
+                // TODO
                 break;
             case "Amongus":
                 // TODO you died and lost all money.
