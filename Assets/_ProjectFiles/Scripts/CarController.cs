@@ -1,7 +1,14 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    public MiniGameManager manager;
+    public Animator explosionAnimator;
+    public AudioSource explosionSFX;
+
+
     float val = 0;
     Rigidbody2D rb;
 
@@ -22,22 +29,36 @@ public class CarController : MonoBehaviour
         rb.AddForce(Vector2.up * val * Speed);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    IEnumerator OnTriggerEnter2D(Collider2D other)
     {
+        Destroy(other.gameObject);
+
         switch (other.name)
         {
             case "Coin":
-                // TODO you lost all money.
+                manager.AccumulatedCoins += 1;
                 break;
-            case "Coin Doge":
-                // TODO
+            case "CoinDoge":
+                manager.AccumulatedCoins += 5;
                 break;
             case "Amongus":
-                // TODO you died and lost all money.
+                manager.AccumulatedCoins = -999;
+                // TODO Explode
                 break;
             case "Splat":
-                // TODO you died.
+                if (manager.AccumulatedCoins >= 10)
+                {
+                    manager.AccumulatedCoins -= 10;
+                }
+                explosionAnimator.gameObject.SetActive(true);
+                explosionAnimator.SetTrigger("Explode");
+                explosionSFX.Play();
+                yield return new WaitUntil(() => explosionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"));
+                yield return new WaitUntil(() => !explosionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Explosion") && !explosionSFX.isPlaying);
+                explosionAnimator.gameObject.SetActive(false);
                 break;
+            default:
+                throw new Exception();
         }
     }
 }
