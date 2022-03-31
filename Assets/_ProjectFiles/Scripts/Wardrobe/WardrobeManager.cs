@@ -69,6 +69,8 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
             wardrobe.PurchasedItems.Add(item.Name);
             Set(wardrobe, wardrobe.PreviewIndex);
             Source.PlayOneShot(PurchaseSFX);
+
+            uiManager.UpdateMoney();
         }
         else
             Source.PlayOneShot(FailSFX);

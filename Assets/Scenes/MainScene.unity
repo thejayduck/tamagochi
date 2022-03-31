@@ -20744,7 +20744,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wardrobes: []
   Hats:
-    PurchasedItems: []
+    PurchasedItems:
+    - Party Hat
     Index: 0
     PreviewIndex: 0
     Target: {fileID: 240943460}

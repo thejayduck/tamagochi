@@ -29,11 +29,13 @@ public class UIManager : SingletonBehaviour<UIManager>
     [Header("Other")]
     public string SceneName;
     public AudioMixer Mixer;
-    
+
     private void Start()
     {
         stats = PetStats.Instance;
         quickActionsTween = QuickActions.GetComponent<TweenManager>();
+
+        UpdateMoney();
     }
 
     public void ToggleQuickActions()
@@ -53,30 +55,32 @@ public class UIManager : SingletonBehaviour<UIManager>
         // Experience Slider
         var requiredLevelExp = nextExperience - previousExperience;
         var currentLevelExp = (int)totalExperience - previousExperience;
-        
+
         ExperienceSlider.value = (float)currentLevelExp / requiredLevelExp;
         CurExperienceText.SetText(currentLevelExp.ToString());
         // NextExperienceText.SetText((nextExperience - (int)totalExperience).ToString());
         NextExperienceText.SetText($"LVL{nextLevel}");
     }
 
-    public void UpdateMoney(int money)
+    public void UpdateMoney()
     {
-        MoneyText.text = $"${money}";
+        MoneyText.text = $"${stats.Money}";
     }
 
-    public void ChangeMasterVolume(float value) => 
+    public void ChangeMasterVolume(float value) =>
         Mixer.SetFloat("volMaster", Mathf.Log(value) * 20);
     public void ChangeSfxVolume(float value) =>
         Mixer.SetFloat("volSFX", Mathf.Log(value) * 20);
     public void ChangeMusicVolume(float value) =>
         Mixer.SetFloat("volBGM", Mathf.Log(value) * 20);
 
-    public void LoadScene(string target){
-        SceneManager.LoadScene(target); 
+    public void LoadScene(string target)
+    {
+        SceneManager.LoadScene(target);
     }
 
-    public void Quit(){
+    public void Quit()
+    {
         Application.Quit();
     }
 }
