@@ -75,6 +75,14 @@ public class PetStats : SingletonBehaviour<PetStats>
         uiManager = UIManager.Instance;
         maxLevel = (int)ExperienceCurve[ExperienceCurve.length - 1].time;
         SwitchStage(CurrentLevel);
+
+        var minigameManager = GameObject.Find("MiniGameManager");
+        if (minigameManager != null)
+        {
+            var comp = minigameManager.GetComponent<MiniGameManager>();
+            Money += comp.AccumulatedCoins;
+            Destroy(minigameManager);
+        }
     }
 
     private void Update()

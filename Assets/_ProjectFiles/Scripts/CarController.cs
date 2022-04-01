@@ -30,7 +30,7 @@ public class CarController : MonoBehaviour
         rb.AddForce(Vector2.up * val * Speed);
     }
 
-    IEnumerator OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         Destroy(other.gameObject);
 
@@ -44,7 +44,8 @@ public class CarController : MonoBehaviour
                 break;
             case "Amongus":
                 Manager.AccumulatedCoins = -999;
-                // TODO Explode
+                ExplosionAnimator.SetTrigger("Explode");
+                Source.PlayOneShot(Explosion);
                 break;
             case "Splat":
 
@@ -52,12 +53,6 @@ public class CarController : MonoBehaviour
                 {
                     Manager.AccumulatedCoins -= 10;
                 }
-
-                ExplosionAnimator.SetTrigger("Explode");
-
-                Source.PlayOneShot(Explosion);
-                yield return null;
-
                 break;
             default:
                 throw new Exception();
