@@ -65,7 +65,7 @@ public class PetStats : SingletonBehaviour<PetStats>
 
     [Range(0.0f, 1.0f)]
     public float OverallHealth;
-    public AnimationCurve HealthCurve; // TODO implement
+    // public AnimationCurve HealthCurve;
     public Stat Affection;
     public Stat Hunger;
     public Stat Cleanliness;
