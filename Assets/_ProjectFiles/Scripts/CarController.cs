@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public MiniGameManager manager;
-    public Animator explosionAnimator;
-    public AudioSource explosionSFX;
-
+    public MiniGameManager Manager;
+    public Animator ExplosionAnimator;
+    public AudioSource Source;
+    public AudioClip Explosion;
 
     float val = 0;
     Rigidbody2D rb;
@@ -36,26 +36,27 @@ public class CarController : MonoBehaviour
         switch (other.name)
         {
             case "Coin":
-                manager.AccumulatedCoins += 1;
+                Manager.AccumulatedCoins += 1;
                 break;
             case "CoinDoge":
-                manager.AccumulatedCoins += 5;
+                Manager.AccumulatedCoins += 5;
                 break;
             case "Amongus":
-                manager.AccumulatedCoins = -999;
+                Manager.AccumulatedCoins = -999;
                 // TODO Explode
                 break;
             case "Splat":
-                if (manager.AccumulatedCoins >= 10)
+
+                if (Manager.AccumulatedCoins >= 10)
                 {
-                    manager.AccumulatedCoins -= 10;
+                    Manager.AccumulatedCoins -= 10;
                 }
-                explosionAnimator.gameObject.SetActive(true);
-                explosionAnimator.SetTrigger("Explode");
-                explosionSFX.Play();
-                yield return new WaitUntil(() => explosionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"));
-                yield return new WaitUntil(() => !explosionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Explosion") && !explosionSFX.isPlaying);
-                explosionAnimator.gameObject.SetActive(false);
+
+                ExplosionAnimator.SetTrigger("Explode");
+
+                Source.PlayOneShot(Explosion);
+                yield return null;
+
                 break;
             default:
                 throw new Exception();
