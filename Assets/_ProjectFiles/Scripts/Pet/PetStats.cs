@@ -193,4 +193,9 @@ public class PetStats : SingletonBehaviour<PetStats>
                 break;
         }
     }
+
+    public void AddMoney(int value)
+    {
+        Money += value;
+    }
 }
