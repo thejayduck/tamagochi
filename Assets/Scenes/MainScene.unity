@@ -12110,6 +12110,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397261673}
   m_CullTransparentMesh: 1
+--- !u!114 &485310911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5061103586873497361, guid: f342f24fa55aa390883d129837cd1b97, type: 3}
+  m_PrefabInstance: {fileID: 496487375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &496487375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12796,6 +12807,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &524740814 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5061103586873497361, guid: f342f24fa55aa390883d129837cd1b97, type: 3}
+  m_PrefabInstance: {fileID: 524740807}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524740809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &526965646
 GameObject:
   m_ObjectHideFlags: 0
@@ -13151,6 +13173,9 @@ MonoBehaviour:
   AffectionSlider: {fileID: 1208086791}
   HungerSlider: {fileID: 1319136941}
   CleanlinessSlider: {fileID: 332865419}
+  MasterVolumeSlider: {fileID: 485310911}
+  BGMVolumeSlider: {fileID: 524740814}
+  SFXVolumeSlider: {fileID: 1250461685}
   ExperienceSlider: {fileID: 1941601527}
   CurExperienceText: {fileID: 1946870226}
   NextExperienceText: {fileID: 2028677435}
@@ -14965,84 +14990,6 @@ MonoBehaviour:
         m_Calls: []
   CurrentState: 0
   OverallHealth: 1
-  HealthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1.2229731
-      outSlope: 1.2229731
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8033079
-      value: 0.98242396
-      inSlope: -0.56623507
-      outSlope: -0.56623507
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.7805431
-    - serializedVersion: 3
-      time: 1
-      value: 0.25
-      inSlope: -1.822259
-      outSlope: -1.822259
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.7538816
-      value: 0.30969998
-      inSlope: -0.108988814
-      outSlope: -0.108988814
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.92692304
-    - serializedVersion: 3
-      time: 2
-      value: 0.12774026
-      inSlope: -0.34965518
-      outSlope: -0.34965518
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 3
-      value: 0.16774762
-      inSlope: -0.1236839
-      outSlope: -0.1236839
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 3.5000045
-      value: 0.024058744
-      inSlope: 0.0013401998
-      outSlope: 0.0013401998
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.5591183
-    - serializedVersion: 3
-      time: 4
-      value: 0.102761365
-      inSlope: 0.15740667
-      outSlope: 0.15740667
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   Affection:
     value: 0.8
     IncrementCurve:
@@ -15685,7 +15632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543810667741534971, guid: 19b50665dbfa03e9f9db3c3df2f08b4e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543810667741534971, guid: 19b50665dbfa03e9f9db3c3df2f08b4e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15701,7 +15648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543810667741534971, guid: 19b50665dbfa03e9f9db3c3df2f08b4e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadScene
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 5543810667741534971, guid: 19b50665dbfa03e9f9db3c3df2f08b4e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -15810,6 +15757,10 @@ PrefabInstance:
     - target: {fileID: 5543810667741534973, guid: 19b50665dbfa03e9f9db3c3df2f08b4e, type: 3}
       propertyPath: m_Name
       value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543810668631073112, guid: 19b50665dbfa03e9f9db3c3df2f08b4e, type: 3}
+      propertyPath: m_text
+      value: QUIT GAME
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19b50665dbfa03e9f9db3c3df2f08b4e, type: 3}
@@ -28810,6 +28761,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1250461685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5061103586873497361, guid: f342f24fa55aa390883d129837cd1b97, type: 3}
+  m_PrefabInstance: {fileID: 1250461678}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250461680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1272282500
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    float val = 0;
+    Rigidbody2D rb;
+
     public MiniGameManager Manager;
     public Animator ExplosionAnimator;
     public AudioSource Source;
     public AudioClip Explosion;
-
-    float val = 0;
-    Rigidbody2D rb;
+    public AudioClip TireScreech;
 
     public float Speed;
 

@@ -17,6 +17,10 @@ public class UIManager : SingletonBehaviour<UIManager>
     public Slider HungerSlider;
     public Slider CleanlinessSlider;
 
+    public Slider MasterVolumeSlider;
+    public Slider BGMVolumeSlider;
+    public Slider SFXVolumeSlider;
+
     public Slider ExperienceSlider;
     public TMP_Text CurExperienceText;
     public TMP_Text NextExperienceText;
@@ -36,6 +40,10 @@ public class UIManager : SingletonBehaviour<UIManager>
         quickActionsTween = QuickActions.GetComponent<TweenManager>();
 
         UpdateMoney();
+
+        ChangeMasterVolume(MasterVolumeSlider.value);
+        ChangeMusicVolume(BGMVolumeSlider.value);
+        ChangeSfxVolume(SFXVolumeSlider.value);
     }
 
     public void ToggleQuickActions()

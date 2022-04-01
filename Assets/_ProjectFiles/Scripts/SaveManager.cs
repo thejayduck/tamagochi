@@ -13,12 +13,14 @@ public class SaveManager : MonoBehaviour
     private PetStats stats;
     private WardrobeManager wardrobe;
     private RoomManager room;
+    private UIManager uiManager;
 
     private void Awake()
     {
         stats = PetStats.Instance;
         wardrobe = WardrobeManager.Instance;
         room = RoomManager.Instance;
+        uiManager = UIManager.Instance;
 
         if (!Directory.Exists(SAVE_LOC))
         {
@@ -56,6 +58,10 @@ public class SaveManager : MonoBehaviour
 
         SaveObject saveObject = new SaveObject
         {
+            MasterVolume = uiManager.MasterVolumeSlider.value,
+            BGMVolume = uiManager.BGMVolumeSlider.value,
+            SFXVolume = uiManager.SFXVolumeSlider.value,
+
             Money = stats.Money,
             Experience = stats.TotalExperience,
             Level = stats.CurrentLevel,
@@ -143,6 +149,10 @@ public class SaveManager : MonoBehaviour
 
             var saveData = JsonConvert.DeserializeObject<SaveObject>(json);
 
+            uiManager.MasterVolumeSlider.value = saveData.MasterVolume;
+            uiManager.BGMVolumeSlider.value = saveData.BGMVolume;
+            uiManager.SFXVolumeSlider.value = saveData.SFXVolume;
+
             stats.Money = saveData.Money;
             stats.TotalExperience = saveData.Experience;
             stats.CurrentLevel = saveData.Level;
@@ -173,6 +183,11 @@ public class SaveManager : MonoBehaviour
 
 public struct SaveObject
 {
+    // Settings
+    public float MasterVolume;
+    public float BGMVolume;
+    public float SFXVolume;
+
     // Progress
     public int Money;
     public float Experience;

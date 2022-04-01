@@ -1227,6 +1227,7 @@ MonoBehaviour:
   ExplosionAnimator: {fileID: 1000161076}
   Source: {fileID: 690924987}
   Explosion: {fileID: 8300000, guid: 40d76ef0667dc9f529336c023d06d8da, type: 3}
+  TireScreech: {fileID: 8300000, guid: d617059eac96c29ad8f1e0450f2dc3ae, type: 3}
   Speed: 18
 --- !u!50 &1105103563
 Rigidbody2D:
