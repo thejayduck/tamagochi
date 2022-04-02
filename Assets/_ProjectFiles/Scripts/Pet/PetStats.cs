@@ -110,6 +110,7 @@ public class PetStats : SingletonBehaviour<PetStats>
             case 0:
                 Stage = StagesEnum.Puppy;
                 CurrentStage = Stages[0];
+                uiManager.WardrobeToggle.interactable = false;
                 break;
             case 1:
                 Stage = StagesEnum.Adolescent;

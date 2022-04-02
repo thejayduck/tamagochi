@@ -52,68 +52,77 @@ public class SaveManager : MonoBehaviour
         public string Data;
     }
 
+    public void DeleteSave()
+    {
+        if (File.Exists(SAVE_LOC))
+            File.Delete(SAVE_LOC);
+    }
+
     public void Save()
     {
         Debug.Log("Saving..");
 
-        SaveObject saveObject = new SaveObject
+        if (!stats.IsDead)
         {
-            MasterVolume = uiManager.MasterVolumeSlider.value,
-            BGMVolume = uiManager.BGMVolumeSlider.value,
-            SFXVolume = uiManager.SFXVolumeSlider.value,
-
-            Money = stats.Money,
-            Experience = stats.TotalExperience,
-            Level = stats.CurrentLevel,
-
-            Affection = stats.Affection.Value,
-            Hunger = stats.Hunger.Value,
-            Cleanliness = stats.Cleanliness.Value,
-
-            HatIndex = wardrobe.Hats.Index,
-            GlassesIndex = wardrobe.Glasses.Index,
-            DressIndex = wardrobe.Dress.Index,
-            AccessoryIndex = wardrobe.Accessories.Index,
-
-            PurchasedHats = wardrobe.Hats.PurchasedItems.ToArray(),
-            PurchasedGlasses = wardrobe.Glasses.PurchasedItems.ToArray(),
-            PurchasedDresses = wardrobe.Dress.PurchasedItems.ToArray(),
-            PurchasedAccessories = wardrobe.Accessories.PurchasedItems.ToArray(),
-
-            RoomIndex = room.CurrentRoom,
-        };
-
-        string json = JsonConvert.SerializeObject(saveObject);
-
-        string iv;
-        string data;
-
-        using (var aes = Aes.Create())
-        {
-            aes.Key = Convert.FromBase64String("UJ3JMqwz+uD/nIVQDbDhtLHj39E77Am6X3yd9pRKjFQ=");
-            aes.GenerateIV();
-            iv = Convert.ToBase64String(aes.IV);
-            var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
-
-            using var ms = new MemoryStream();
-            using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
-            using (var sw = new StreamWriter(cs))
+            SaveObject saveObject = new SaveObject
             {
-                sw.Write(json);
+                MasterVolume = uiManager.MasterVolumeSlider.value,
+                BGMVolume = uiManager.BGMVolumeSlider.value,
+                SFXVolume = uiManager.SFXVolumeSlider.value,
+
+                Money = stats.Money,
+                Experience = stats.TotalExperience,
+                Level = stats.CurrentLevel,
+
+                Affection = stats.Affection.Value,
+                Hunger = stats.Hunger.Value,
+                Cleanliness = stats.Cleanliness.Value,
+
+                HatIndex = wardrobe.Hats.Index,
+                GlassesIndex = wardrobe.Glasses.Index,
+                DressIndex = wardrobe.Dress.Index,
+                AccessoryIndex = wardrobe.Accessories.Index,
+
+                PurchasedHats = wardrobe.Hats.PurchasedItems.ToArray(),
+                PurchasedGlasses = wardrobe.Glasses.PurchasedItems.ToArray(),
+                PurchasedDresses = wardrobe.Dress.PurchasedItems.ToArray(),
+                PurchasedAccessories = wardrobe.Accessories.PurchasedItems.ToArray(),
+
+                RoomIndex = room.CurrentRoom,
+            };
+
+            string json = JsonConvert.SerializeObject(saveObject);
+
+            string iv;
+            string data;
+
+            using (var aes = Aes.Create())
+            {
+                aes.Key = Convert.FromBase64String("UJ3JMqwz+uD/nIVQDbDhtLHj39E77Am6X3yd9pRKjFQ=");
+                aes.GenerateIV();
+                iv = Convert.ToBase64String(aes.IV);
+                var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+                using var ms = new MemoryStream();
+                using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                using (var sw = new StreamWriter(cs))
+                {
+                    sw.Write(json);
+                }
+                data = Convert.ToBase64String(ms.ToArray());
             }
-            data = Convert.ToBase64String(ms.ToArray());
-        }
 
-        using (var fs = File.OpenWrite(SAVE_LOC))
-        using (var sw = new StreamWriter(fs))
-        using (var js = new JsonTextWriter(sw))
-        {
-            var ser = new JsonSerializer();
-            ser.Serialize(js, new SaveFile()
+            using (var fs = File.OpenWrite(SAVE_LOC))
+            using (var sw = new StreamWriter(fs))
+            using (var js = new JsonTextWriter(sw))
             {
-                IV = iv,
-                Data = data
-            });
+                var ser = new JsonSerializer();
+                ser.Serialize(js, new SaveFile()
+                {
+                    IV = iv,
+                    Data = data
+                });
+            }
         }
     }
 
