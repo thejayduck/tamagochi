@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Shinaosu
-  productName: Tamagotchi
+  productName: Tamagochi
   defaultCursor: {fileID: 2800000, guid: 9f9d068f9657cc03784f433116812a0d, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 0.84705883, b: 0.63529414, a: 1}

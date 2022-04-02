@@ -74,6 +74,7 @@ public class PetStats : SingletonBehaviour<PetStats>
         {
             var comp = minigameManager.GetComponent<MiniGameManager>();
             Money += comp.AccumulatedCoins;
+            TotalExperience += comp.AccumulatedCoins / 2;
             Destroy(minigameManager);
         }
         uiManager.UpdateMoney();
@@ -147,7 +148,7 @@ public class PetStats : SingletonBehaviour<PetStats>
         SwitchStage(CurrentLevel);
 
         CurrentLevel = Mathf.Clamp(CurrentLevel, 0, 2);
-        TotalExperience = Mathf.Clamp(TotalExperience, 0, 500);
+        TotalExperience = Mathf.Clamp(TotalExperience, 0, 300);
     }
 
     public void CalculateOverall()
@@ -166,18 +167,15 @@ public class PetStats : SingletonBehaviour<PetStats>
         {
             case StatEnum.Affection:
                 Affection.Value += increment;
-                if (Affection.Value < 0.9f)
-                    TotalExperience += Affection.IncrementCurve.Evaluate(increment);
+                TotalExperience += Affection.IncrementCurve.Evaluate(increment);
                 break;
             case StatEnum.Hunger:
                 Hunger.Value += increment;
-                if (Hunger.Value < 0.9f)
-                    TotalExperience += Hunger.IncrementCurve.Evaluate(increment);
+                TotalExperience += Hunger.IncrementCurve.Evaluate(increment);
                 break;
             case StatEnum.Cleanliness:
                 Cleanliness.Value += increment / 20f;
-                if (Cleanliness.Value < 0.9f)
-                    TotalExperience += Cleanliness.IncrementCurve.Evaluate(increment);
+                TotalExperience += Cleanliness.IncrementCurve.Evaluate(increment);
                 break;
         }
     }
