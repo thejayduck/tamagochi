@@ -1,13 +1,19 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class MiniGameManager : MonoBehaviour
 {
     public int AccumulatedCoins;
+
+    public TMP_Text ScoreText;
+
     public Transform ObstaclesParent;
     public ObstacleEntry[] ObstaclesPrefabs;
+    public UnityEvent OnDeathEvent;
 
     readonly System.Random rand = new System.Random();
 
@@ -19,6 +25,16 @@ public class MiniGameManager : MonoBehaviour
     public void Play()
     {
         StartCoroutine(Spawner());
+    }
+
+    public void OnDeath()
+    {
+        StopAllCoroutines();
+
+        foreach (Transform child in ObstaclesParent)
+            Destroy(child.gameObject);
+
+        OnDeathEvent.Invoke();
     }
 
     public IEnumerator Spawner()

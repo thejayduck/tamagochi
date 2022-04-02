@@ -14,10 +14,12 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
     public Wardrobe Dress;
     public Wardrobe Accessories;
 
-    // TODO add sound effect on purchase
+    [Header("Visuals")]
     public Color32 AvailableColor;
     public Color32 UnavailableColor;
+    public ParticleSystem PurchaseParticle;
 
+    [Header("Audio")]
     public AudioSource Source;
     public AudioClip PurchaseSFX;
     public AudioClip FailSFX;
@@ -69,6 +71,8 @@ public class WardrobeManager : SingletonBehaviour<WardrobeManager>
             wardrobe.PurchasedItems.Add(item.Name);
             Set(wardrobe, wardrobe.PreviewIndex);
             Source.PlayOneShot(PurchaseSFX);
+
+            PurchaseParticle.Play();
 
             uiManager.UpdateMoney();
         }

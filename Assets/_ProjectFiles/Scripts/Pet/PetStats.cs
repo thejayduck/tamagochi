@@ -2,14 +2,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 #region ENUMS
-public enum StatesEnum
-{
-    Happy,
-    Okay,
-    Bad,
-    Awful,
-    Dead
-}
 public enum StagesEnum
 {
     Puppy,
@@ -61,14 +53,15 @@ public class PetStats : SingletonBehaviour<PetStats>
     public Stage[] Stages;
 
     [Header("Health")]
-    [ReadOnly] public StatesEnum CurrentState;
+    public bool IsDead;
 
     [Range(0.0f, 1.0f)]
     public float OverallHealth;
-    // public AnimationCurve HealthCurve;
     public Stat Affection;
     public Stat Hunger;
     public Stat Cleanliness;
+
+    public UnityEvent OnDeathEvent;
 
     private void Start()
     {
@@ -83,6 +76,7 @@ public class PetStats : SingletonBehaviour<PetStats>
             Money += comp.AccumulatedCoins;
             Destroy(minigameManager);
         }
+        uiManager.UpdateMoney();
     }
 
     private void Update()
@@ -158,25 +152,10 @@ public class PetStats : SingletonBehaviour<PetStats>
     public void CalculateOverall()
     {
         OverallHealth = (Mathf.Pow(Cleanliness.Value, 1.2f) + Mathf.Pow(Hunger.Value, 1.2f) + Affection.Value) / 3;
-        if (OverallHealth > 0.85f)
+        if (OverallHealth <= 0 && !IsDead)
         {
-            CurrentState = StatesEnum.Happy;
-        }
-        else if (OverallHealth > 0.55f)
-        {
-            CurrentState = StatesEnum.Okay;
-        }
-        else if (OverallHealth > 0.35f)
-        {
-            CurrentState = StatesEnum.Bad;
-        }
-        else if (OverallHealth > 0f)
-        {
-            CurrentState = StatesEnum.Awful;
-        }
-        else
-        {
-            CurrentState = StatesEnum.Dead;
+            IsDead = true;
+            OnDeathEvent.Invoke();
         }
     }
 

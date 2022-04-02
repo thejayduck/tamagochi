@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 8
+  Clip: {fileID: 8300000, guid: 4fe8d36f38883308db5d7f7ff01eacfe, type: 3}

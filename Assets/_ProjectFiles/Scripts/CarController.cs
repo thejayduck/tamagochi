@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -9,6 +8,8 @@ public class CarController : MonoBehaviour
 
     public MiniGameManager Manager;
     public Animator ExplosionAnimator;
+
+    [Header("Audio")]
     public AudioSource Source;
     public AudioClip Explosion;
     public AudioClip TireScreech;
@@ -34,6 +35,9 @@ public class CarController : MonoBehaviour
     {
         Destroy(other.gameObject);
 
+        AudioClip clip = other.GetComponent<Obstacle>().Clip;
+        Source.PlayOneShot(clip);
+
         switch (other.name)
         {
             case "Coin":
@@ -43,12 +47,12 @@ public class CarController : MonoBehaviour
                 Manager.AccumulatedCoins += 5;
                 break;
             case "Amongus":
-                Manager.AccumulatedCoins = -999;
+                Manager.AccumulatedCoins = 0;
+                Manager.OnDeath();
                 ExplosionAnimator.SetTrigger("Explode");
                 Source.PlayOneShot(Explosion);
                 break;
             case "Splat":
-
                 if (Manager.AccumulatedCoins >= 10)
                 {
                     Manager.AccumulatedCoins -= 10;
@@ -57,5 +61,7 @@ public class CarController : MonoBehaviour
             default:
                 throw new Exception();
         }
+
+        Manager.ScoreText.SetText($"Accumulated Coins: {Manager.AccumulatedCoins}");
     }
 }
