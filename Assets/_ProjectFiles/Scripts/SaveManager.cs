@@ -32,19 +32,19 @@ public class SaveManager : MonoBehaviour
         InvokeRepeating("Save", 5.0f, 10.0f);
     }
 
-#if UNITY_EDITOR
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 50, 50), "Save"))
-        {
-            Save();
-        }
-        if (GUI.Button(new Rect(10, 100, 50, 50), "Load"))
-        {
-            Load();
-        }
-    }
-#endif
+    // #if UNITY_EDITOR
+    //     private void OnGUI()
+    //     {
+    //         if (GUI.Button(new Rect(10, 10, 50, 50), "Save"))
+    //         {
+    //             Save();
+    //         }
+    //         if (GUI.Button(new Rect(10, 100, 50, 50), "Load"))
+    //         {
+    //             Load();
+    //         }
+    //     }
+    // #endif
 
     struct SaveFile
     {

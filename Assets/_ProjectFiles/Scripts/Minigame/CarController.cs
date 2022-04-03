@@ -24,6 +24,11 @@ public class CarController : MonoBehaviour
     void Update()
     {
         val = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Manager.OnDeath();
+        }
     }
 
     void FixedUpdate()
